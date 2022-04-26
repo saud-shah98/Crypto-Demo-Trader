@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
-import coins from './coins.json';
 import Entry from './components/Entry';
 import Columns from './components/Columns';
 import axios from 'axios';
