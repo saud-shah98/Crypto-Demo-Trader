@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList} from 'react-native';
 import {useFonts} from 'expo-font';
 import Entry from './components/Entry';
 import Columns from './components/Columns';
-
+import AppLoading from 'expo-app-loading';
 
 const customFonts = {
   DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf')
@@ -13,7 +13,6 @@ export default function App() {
   const[fontsLoaded] = useFonts(customFonts);
   const [loading, setLoading] = useState(true);
   const [coinData, setCoinData] = useState([]);
-
 
   const getCoins = async () =>{
     const options = {
@@ -43,22 +42,25 @@ export default function App() {
 },[]);
    
     return(
-      <View style={styles.container}>
-        
-
-        {loading ? <Text style={{fontSize:100,alignSelf:'center'}}>Loading</Text>: (
+    
+      
+        <>
+        {loading ? <AppLoading />: (
            <View style={styles.card}>
            <Columns />
            <FlatList data={coinData} keyExtractor={(item) => item.id} renderItem={Entry} />
          </View>
 
         )}
-        
-     </View>
+        </>
 
+     
     )
   };
 
+
+
+  
 
 const styles = StyleSheet.create({
 

@@ -1,7 +1,9 @@
-import {View,StyleSheet,Text} from 'react-native';
+import {View,StyleSheet,Text, TouchableOpacity} from 'react-native';
 import { Foundation } from '@expo/vector-icons'; 
+
 const Entry = ({item}) => {
     return ( 
+        <TouchableOpacity onPress={()=>{console.log(item)}}>
         <View style={styles.row}>
         <Text style={styles.rowSymbol}>{item.symbol}</Text>
         <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center'}}>
@@ -11,12 +13,13 @@ const Entry = ({item}) => {
         </View>
         <Text style={styles.rowRank}>{item.rank}</Text>
         </View>
+        </TouchableOpacity>
 
     )
 }
 const styles = StyleSheet.create({
     row: {
-        marginTop: 4,
+        marginTop: 2,
         backgroundColor:'#1a1b1c',
         borderRadius:3,
         borderColor:'#142e1b',
@@ -25,16 +28,19 @@ const styles = StyleSheet.create({
       },
       rowSymbol:{
         fontSize:25,
-        color:'#e8ddcd'
+        color:'#e8ddcd',
+        fontFamily:'DMSansRegular'
       },
       rowRank:{
         fontSize:25,
-        color:'#e8ddcd'
+        color:'#e8ddcd',
+        fontFamily:'DMSansRegular'
       },
       rowPrice:{
         marginRight: 10,
         fontSize:22,
-        color:'#e8ddcd'
+        color:'#e8ddcd',
+        fontFamily:'DMSansRegular'
       }
 })
 
