@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
+import {useFonts} from 'expo-font';
 import Entry from './components/Entry';
 import Columns from './components/Columns';
-import axios from 'axios';
+
+
+const customFonts = {
+  DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf')
+}
 
 export default function App() {
-
+  const[fontsLoaded] = useFonts(customFonts);
   const [loading, setLoading] = useState(true);
   const [coinData, setCoinData] = useState([]);
 
@@ -19,7 +24,6 @@ export default function App() {
     }
       const coins = await fetch('https://api.coinlore.net/api/tickers/', options)
       const coinsJson = await coins.json()
-      console.log(coinsJson)
       setCoinData(...coinData, coinsJson.data)
       
   };
@@ -31,19 +35,18 @@ export default function App() {
     const interval = setInterval(() => {
       getCoins()
 
-    },10000)
+    },500)
 
     return()=>clearInterval(interval)
 
    
 },[]);
    
-    
     return(
       <View style={styles.container}>
         
 
-        {loading ? <Text style={{fontSize:100,alignSelf:'center',}}>Loading</Text>: (
+        {loading ? <Text style={{fontSize:100,alignSelf:'center',fontFamily:'DMSansRegular'}}>Loading</Text>: (
            <View style={styles.card}>
            <Columns />
            <FlatList data={coinData} keyExtractor={(item) => item.id} renderItem={Entry} />
@@ -61,8 +64,8 @@ const styles = StyleSheet.create({
 
   container:{
     flex:1,
-    padding: 25,
-    backgroundColor:'white',
+    padding: 10,
+    backgroundColor:'#e8ddcd',
   },
   card: {
     width:'100%'
