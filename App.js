@@ -35,7 +35,7 @@ export default function App() {
     const interval = setInterval(() => {
       getCoins()
 
-    },500)
+    },1500)
 
     return()=>clearInterval(interval)
 
@@ -46,7 +46,7 @@ export default function App() {
       <View style={styles.container}>
         
 
-        {loading ? <Text style={{fontSize:100,alignSelf:'center',fontFamily:'DMSansRegular'}}>Loading</Text>: (
+        {loading ? <Text style={{fontSize:100,alignSelf:'center'}}>Loading</Text>: (
            <View style={styles.card}>
            <Columns />
            <FlatList data={coinData} keyExtractor={(item) => item.id} renderItem={Entry} />
