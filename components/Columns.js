@@ -5,17 +5,14 @@ const Columns = () => {
     return(
 
     <View style = {styles.columns}>
-        <Text style={styles.columnHeaderText}>Symbol</Text>
-        <Text style={styles.columnHeaderText}>Price</Text>
-        <Text style={styles.columnHeaderText}>Rank</Text>
+        <Text style={styles.columnHeaderText}>Crypto</Text>
     </View>
   )
 }
 
 const styles=StyleSheet.create({
     columns:{
-        flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
         backgroundColor:'#142e1b',
         height: 90,
         alignItems:'center',
