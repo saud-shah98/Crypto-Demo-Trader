@@ -16,14 +16,15 @@ const styles=StyleSheet.create({
     columns:{
         flexDirection:'row',
         justifyContent:'space-between',
-        backgroundColor:'darkred',
+        backgroundColor:'#142e1b',
         height: 90,
         alignItems:'center',
-        paddingHorizontal: 40
+        paddingHorizontal: 30
       },
       columnHeaderText: {
-        color:'white',
+        color:'#e8ddcd',
         fontSize: 30,
+        fontFamily:'DMSansRegular'
       }
     
 });
