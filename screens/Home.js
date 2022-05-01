@@ -1,88 +1,90 @@
-import React, {useState,useEffect} from 'react'
-import {Text,StyleSheet, ActivityIndicator,SafeAreaView,View} from 'react-native';
-import Columns from '../components/Columns';
-import Entry from '../components/Entry';
-import List from '../components/List';
-import SearchBar from '../components/SearchBar';
+import React, { useState, useEffect,useContext } from 'react'
+import { StyleSheet, ActivityIndicator, SafeAreaView,Button,Text,View} from 'react-native'
+import {AuthContext} from '../navigation/AuthProvider';
+import List from '../components/List'
+import SearchBar from '../components/SearchBar'
 
 
-const Home = ({navigation}) =>{
+
+const Home = ({ navigation }) => {
+  const [coinData, setCoinData] = useState([])
+
+  const [searchPhrase, setSearchPhrase] = useState('')
+  const [clicked, setClicked] = useState(false)
+  const [disable,setDisable] = useState(false)
+
+  const { user, logout } = useContext(AuthContext);
+
+  const [wantsLogOut,setLogOut]= useState(false)
+
   
-    const [coinData, setCoinData] = useState([]);
 
-    const [searchPhrase,setSearchPhrase] = useState('');
-    const [clicked,setClicked] = useState(false);
-  
-    useEffect(() => {
+
+  useEffect(() => {
+    let abort = new AbortController()
+    const interval = setInterval(() => {
       getCoins()
-  
-      const interval = setInterval(() => {
-        getCoins()
-  
-      },1500)
+      
+    }, 1500)
 
-      return()=>clearInterval(interval)   
+    return () => {
+      abort.abort();
+      clearInterval(interval)
+    }
+  }, [])
 
-  },[]);
 
-  const getCoins = async () =>{
+  const getCoins = async () => {
+    
     const options = {
-      method:'GET',
+      method: 'GET',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json'
       }
     }
-      const coins = await fetch('https://api.coinlore.net/api/tickers/', options)
-      const coinsJson = await coins.json()
-      setCoinData(...coinData, coinsJson.data)
-      
-  };
+    const coins = await fetch('https://api.coinlore.net/api/tickers/', options)
+    const coinsJson = await coins.json()
+    setCoinData(...coinData, coinsJson.data)
+    console.log(coinsJson.data)
 
+  }
 
-    return(
-        
-      <SafeAreaView style={styles.root} edges={['bottom','left','right']}>
+  return (
+    <SafeAreaView style={styles.root} edges={['bottom', 'left', 'right']}>
 
-        <SearchBar
-          searchPhrase={searchPhrase}
-          setSearchPhrase={setSearchPhrase}
-          clicked={clicked}
-          setClicked={setClicked}/>
-
-        { !coinData? (
-          <ActivityIndicator size="large" />
-        ) : (
-          
-            <List
-              searchPhrase={searchPhrase}
-              data={coinData}
-              setClicked={setClicked}
-              navigation={navigation}
-            />
-            
-
-        )}
-    </SafeAreaView>
-        
+       <View style={{marginTop: 15,flexDirection:'row',justifyContent:'space-between',width:'100%',alignItems:'center', paddingHorizontal:50}} >
     
-    )
+        <Text style={{color:'white'}}>{user.uid}</Text>
+        <Button title="Logout" disabled={disable} onPress={()=>{logout() }}color='green'/>
+      </View>
+      
+      <SearchBar
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        clicked={clicked}
+        setClicked={setClicked}
+      />
+
+      
+        <List
+          searchPhrase={searchPhrase}
+          data={coinData}
+          setClicked={setClicked}
+          navigation={navigation}
+        />
+  
+
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
   root: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex:1
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  titleContainer:{
-    backgroundColor:'darkred',
-    width:'100%',
-    height: 80,
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    // Controls Background For Search Bar + Remainder of the Page after Search
+    backgroundColor: '#303133'
   }
-});
-export default Home;
+})
+export default Home

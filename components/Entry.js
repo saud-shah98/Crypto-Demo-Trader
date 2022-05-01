@@ -33,9 +33,7 @@ const Entry = ({item, navigation}) => {
 }
 const styles = StyleSheet.create({
     row: {
-        marginTop: 2,
         backgroundColor:'#1a1b1c',
-        borderRadius:3,
         borderColor:'#142e1b',
         borderBottomWidth:8,
         flexDirection:'row', justifyContent:'space-between', alignItems:'center',paddingHorizontal:32, paddingVertical:10
