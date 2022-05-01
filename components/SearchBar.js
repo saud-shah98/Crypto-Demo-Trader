@@ -2,6 +2,7 @@
 import React from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
+import AppStyles from '../AppStyles';
 
 const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
   return (
@@ -17,13 +18,14 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
         <Feather
           name="search"
           size={20}
-          color="black"
+          color="white"
           style={{ marginLeft: 1 }}
         />
         {/* Input field */}
         <TextInput
           style={styles.input}
           placeholder="Search"
+          placeholderTextColor='grey'
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {
@@ -32,15 +34,15 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
         />
         {/* cross Icon, depending on whether the search bar is clicked or not */}
         {clicked && (
-          <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={() => {
+          <Entypo name="cross" size={20} color="white" style={{ padding: 1 }} onPress={() => {
               setSearchPhrase("")
           }}/>
         )}
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
       {clicked && (
-        <View>
-          <Button
+        <View style={{marginLeft:10}}>
+          <Button color='green'
             title="Cancel"
             onPress={() => {
               Keyboard.dismiss();
@@ -57,7 +59,7 @@ export default SearchBar;
 // styles
 const styles = StyleSheet.create({
   container: {
-    margin: 15,
+    margin:15,
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: "row",
     width: "95%",
-    backgroundColor: "#d9dbda",
+    backgroundColor: AppStyles.theme_1.GREY,
     borderRadius: 15,
     alignItems: "center",
   },
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: "row",
     width: "80%",
-    backgroundColor: "#d9dbda",
+    backgroundColor: AppStyles.theme_1.GREY,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -85,5 +87,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
     width: "90%",
+    color: AppStyles.theme_1.WHEAT
   },
 });
