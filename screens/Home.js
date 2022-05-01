@@ -50,13 +50,12 @@ const Home = ({ navigation }) => {
   }
 
   return (
-
     <SafeAreaView style={styles.root} edges={['bottom', 'left', 'right']}>
 
-       <View style={{marginTop: 15, backgroundColor:'darkred',flexDirection:'row',justifyContent:'center',alignItems:'center'}} >
+       <View style={{marginTop: 15,flexDirection:'row',justifyContent:'space-between',width:'100%',alignItems:'center', paddingHorizontal:50}} >
     
         <Text style={{color:'white'}}>{user.uid}</Text>
-        <Button title="Logout" disabled={disable} onPress={()=>{logout() }}color='black'/>
+        <Button title="Logout" disabled={disable} onPress={()=>{logout() }}color='green'/>
       </View>
       
       <SearchBar

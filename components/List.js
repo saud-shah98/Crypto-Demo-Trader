@@ -26,6 +26,7 @@ const List = ({data,navigation, searchPhrase}) => {
             data={data}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
+            
           />
         </View>
       </SafeAreaView>
