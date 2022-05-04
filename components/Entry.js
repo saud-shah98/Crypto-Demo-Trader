@@ -7,21 +7,26 @@ const Entry = ({item, navigation}) => {
 
         <View style={styles.row}>
         
-          <View>
-            <Text style={{color:'white', fontSize:12 }}>Symbol</Text>
+        <View style={styles.columns}>
+            <Text style={styles.labels}>Name</Text>
+            <Text style={styles.rowName}>{item.name}</Text>
+          </View>
+
+          <View style={styles.columns}>
+            <Text style={styles.labels}>Symbol</Text>
             <Text style={styles.rowSymbol}>{item.symbol}</Text>
           </View>
 
-          <View style={{alignItems:'center'}}>
-            <Text style={{color:'white',fontSize:12}}>Price</Text>
-            <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center'}}>
+          <View style={styles.columns}>
+            <Text style={styles.labels}>Price</Text>
+            <View style={styles.priceColumn}>
               <Foundation name="dollar" size={25} color="green" style={{marginRight:5}} />
               <Text style={styles.rowPrice}>{item.price_usd}</Text>
             </View>
           </View>
 
-          <View style={{alignItems:'center'}}>
-            <Text style={{color:'white'}}>Rank</Text>
+          <View style={styles.columns}>
+            <Text style={styles.labels}>Rank</Text>
             <Text style={styles.rowRank}>{item.rank}</Text>
           </View>
         
@@ -33,26 +38,41 @@ const Entry = ({item, navigation}) => {
 }
 const styles = StyleSheet.create({
     row: {
-        backgroundColor:'#1a1b1c',
-        borderColor:'#142e1b',
-        borderBottomWidth:8,
-        flexDirection:'row', justifyContent:'space-between', alignItems:'center',paddingHorizontal:32, paddingVertical:10
+        backgroundColor:'firebrick',
+        flexDirection:'row', justifyContent:'space-evenly', alignItems:'center', height:100,
+        marginVertical:10
       },
       rowSymbol:{
-        fontSize:25,
+        fontSize:16,
+        color:'#e8ddcd',
+        fontFamily:'DMSansRegular',
+        
+      },
+      rowName:{
+        fontSize:16,
         color:'#e8ddcd',
         fontFamily:'DMSansRegular'
       },
       rowRank:{
-        fontSize:25,
+        fontSize:16,
         color:'#e8ddcd',
         fontFamily:'DMSansRegular'
       },
       rowPrice:{
         marginRight: 10,
-        fontSize:22,
+        fontSize:16,
         color:'#e8ddcd',
         fontFamily:'DMSansRegular'
+      },
+      columns:{
+        alignItems:'center',marginHorizontal:5
+      },
+      labels:{
+        color:'white',
+        fontSize:12
+      },
+      priceColumn:{
+        flexDirection:'row',justifyContent:'center',alignItems:'center',
       }
 })
 

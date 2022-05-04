@@ -1,21 +1,8 @@
 import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import AppStyles from '../AppStyles';
+import AppStyles from '../../AppStyles';
 
-const Detail = ({route, navigation}) => {
-    const {item} = route.params;
-    console.log(item)
-    let details =  {
-          'Name':item.name,
-          'Rank':item.rank,
-          'Price USD':item. price_usd,
-          'Percentage Change 24hrs':item.percent_change_24h,
-          'Percentage Change 1hr':item.percent_change_1h,
-          'Percentage Change 7d':item.percent_change_7d,
-          'Price in BTC':item.price_btc,
-          'Market Cap USA':item.market_cap_usd
-    }
-
+const Detail = ({details}) => {
+ 
     return (
         <View style={styles.container}>
          

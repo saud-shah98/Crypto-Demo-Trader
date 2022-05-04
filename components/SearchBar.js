@@ -60,10 +60,9 @@ export default SearchBar;
 const styles = StyleSheet.create({
   container: {
     margin:15,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    width: "90%",
 
   },
   searchBar__unclicked: {

@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import Constants from 'expo-constants';
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -10,6 +11,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: Constants.manifest?.extra?.firebaseApiKey,
   authDomain: Constants.manifest?.extra?.firebaseAuthDomain,
+  databaseURL: "https://crypto-ba0ff-default-rtdb.firebaseio.com",
   projectId: Constants.manifest?.extra?.firebaseProjectId,
   storageBucket: Constants.manifest?.extra?.firebaseStorageBucket,
   messagingSenderId: Constants.manifest?.extra?.firebaseMessagingSenderId,
@@ -19,6 +21,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
-export default auth;
+export const db = getDatabase(app);
+
+

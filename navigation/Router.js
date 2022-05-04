@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import { AuthContext } from './AuthProvider';
 import AppStack from './Stacks/AppStack';
 import AuthStack from './Stacks/AuthStack';
-import auth from '../firebase';
+import {auth,db} from '../firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import {Text} from 'react-native';
 
@@ -23,7 +23,6 @@ const Router = () => {
 
     useEffect(()=>{
         const subscriber = auth.onAuthStateChanged(userChange)
-    
         return subscriber;
     },[]);
 

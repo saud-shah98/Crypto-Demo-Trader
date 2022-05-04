@@ -8,7 +8,7 @@ export default function Splash({navigation}){
         <SafeAreaView style={styles.container}>
             <View style={styles.splash}>
             
-                <Image style={{width: 500, height:400}} source={require('../assets/splash3.jpeg')}/>
+                <Image style={styles.splashImg} source={require('../assets/splash1.jpg')}/>
 
                 
                 <Pressable style={styles.loginBtn} onPress={()=> navigation.navigate('Login')}>
@@ -34,7 +34,9 @@ const styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'space-evenly'
 
-
+    },
+    splashImg:{
+        width: '90%', height:'70%'
     },
     splashText:{
         color:AppStyles.theme_1.DARKGREEN,
