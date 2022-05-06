@@ -1,5 +1,6 @@
 
 import React,{createContext,useState} from 'react';
+import {Alert} from 'react-native';
 import {auth} from '../firebase'
 import { getAuth, signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut } from "firebase/auth";
 

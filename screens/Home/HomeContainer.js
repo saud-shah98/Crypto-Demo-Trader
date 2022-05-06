@@ -46,6 +46,7 @@ const HomeContainer = ({navigation}) => {
             clicked={clicked} 
             setClicked={setClicked} 
             searchPhrase={searchPhrase} 
+            setSearchPhrase={setSearchPhrase} 
             coinData={coinData} 
             setCoinData={setCoinData}  
         />
