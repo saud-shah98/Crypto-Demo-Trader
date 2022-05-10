@@ -2,16 +2,14 @@
 import React from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
-import AppStyles from '../AppStyles';
+import AppStyles from "../AppStyles";
 
-const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
+const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
   return (
     <View style={styles.container}>
       <View
         style={
-          clicked
-            ? styles.searchBar__clicked
-            : styles.searchBar__unclicked
+          clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
         }
       >
         {/* search Icon */}
@@ -25,7 +23,7 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
         <TextInput
           style={styles.input}
           placeholder="Search"
-          placeholderTextColor='grey'
+          placeholderTextColor="grey"
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {
@@ -34,15 +32,22 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
         />
         {/* cross Icon, depending on whether the search bar is clicked or not */}
         {clicked && (
-          <Entypo name="cross" size={20} color="white" style={{ padding: 1 }} onPress={() => {
-              setSearchPhrase("")
-          }}/>
+          <Entypo
+            name="cross"
+            size={20}
+            color="white"
+            style={{ padding: 1 }}
+            onPress={() => {
+              setSearchPhrase("");
+            }}
+          />
         )}
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
       {clicked && (
-        <View style={{marginLeft:10}}>
-          <Button color='green'
+        <View style={{ marginLeft: 10 }}>
+          <Button
+            color="green"
             title="Cancel"
             onPress={() => {
               Keyboard.dismiss();
@@ -59,11 +64,10 @@ export default SearchBar;
 // styles
 const styles = StyleSheet.create({
   container: {
-    margin:15,
+    margin: 15,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-
   },
   searchBar__unclicked: {
     padding: 10,
@@ -86,6 +90,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
     width: "90%",
-    color: AppStyles.theme_1.WHEAT
+    color: AppStyles.theme_1.WHEAT,
   },
 });
