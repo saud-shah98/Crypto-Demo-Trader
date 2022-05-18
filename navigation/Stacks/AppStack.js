@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeContainer from "../../screens/Home/HomeContainer";
 import DetailContainer from "../../screens/Detail/DetailContainer";
-import { AuthContext } from "../AuthProvider";
 
 const Stack = createNativeStackNavigator();
 

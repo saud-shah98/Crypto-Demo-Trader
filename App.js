@@ -7,7 +7,5 @@ const customFonts = {
 };
 
 export default function App() {
-  const [fontsLoaded] = useFonts(customFonts);
-
   return <Providers />;
 }

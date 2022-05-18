@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, Pressable } from "react-native";
+import { StyleSheet, SafeAreaView, Pressable, Text } from "react-native";
 import List from "../../components/List";
 import SearchBar from "../../components/SearchBar";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import AppStyles from "../../AppStyles";
 
 const Home = ({
   coinData,
@@ -12,6 +13,8 @@ const Home = ({
   setClicked,
   logout,
   navigation,
+  user,
+  balance,
 }) => {
   return (
     <SafeAreaView style={styles.root} edges={["top,left,right,bottom"]}>
@@ -23,6 +26,10 @@ const Home = ({
       >
         <SimpleLineIcons name="logout" color="white" size={35} />
       </Pressable>
+
+      <Text style={{ fontSize: 25, color: "white", textAlign: "center" }}>
+        Balance: ${balance}
+      </Text>
 
       <SearchBar
         searchPhrase={searchPhrase}
@@ -44,7 +51,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     // Controls Background For Search Bar + Remainder of the Page after Search
-    backgroundColor: "grey",
+    backgroundColor: "black",
   },
   logoutBtn: {
     justifyContent: "center",
