@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   columnHeaderText: {
     color: "#e8ddcd",
     fontSize: 30,
-    fontFamily: "DMSansRegular",
   },
 });
 

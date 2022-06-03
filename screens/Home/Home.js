@@ -5,6 +5,8 @@ import SearchBar from "../../components/SearchBar";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import AppStyles from "../../AppStyles";
 
+
+
 const Home = ({
   coinData,
   searchPhrase,
@@ -16,6 +18,18 @@ const Home = ({
   user,
   balance,
 }) => {
+
+  function BalanceHeader(){
+    return(
+      <Text style={{ fontSize: 25, color: "white", textAlign:"center",marginTop:10, }}>
+          
+          Balance: ${balance}
+        </Text>
+    )
+  }
+
+
+
   return (
     <SafeAreaView style={styles.root} edges={["top,left,right,bottom"]}>
       <Pressable
@@ -26,10 +40,9 @@ const Home = ({
       >
         <SimpleLineIcons name="logout" color="white" size={35} />
       </Pressable>
-
-      <Text style={{ fontSize: 25, color: "white", textAlign: "center" }}>
-        Balance: ${balance}
-      </Text>
+      
+      { balance!=null?<BalanceHeader />: <></>}
+      
 
       <SearchBar
         searchPhrase={searchPhrase}

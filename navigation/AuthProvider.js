@@ -1,18 +1,10 @@
 import React, { createContext, useState } from "react";
-import { Alert } from "react-native";
 import { auth, db } from "../firebase";
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-
-async function saveUserDetails(cred) {
-  const docRef = await setDoc(doc(db, "users", cred.user.uid), {
-    balance: 0.0,
-  });
-}
 
 export const AuthContext = createContext({});
 
@@ -26,13 +18,10 @@ export const AuthProvider = ({ children }) => {
         setUser,
         login: async (email, password) => {
           try {
-            await signInWithEmailAndPassword(auth, email, password).then(
-              (cred) => {
-                console.log(cred.user.uid);
-              }
-            );
+            await signInWithEmailAndPassword(auth, email, password);
           } catch (e) {
             console.log(e);
+            alert(e);
           }
         },
         register: async (email, password) => {
@@ -42,9 +31,10 @@ export const AuthProvider = ({ children }) => {
               email,
               password
             );
-            await saveUserDetails(user);
+            // await saveUserDetails(user);
           } catch (e) {
             console.log(e);
+            alert(e);
           }
         },
         logout: async () => {

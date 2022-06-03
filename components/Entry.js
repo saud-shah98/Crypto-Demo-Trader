@@ -8,12 +8,12 @@ const Entry = ({ item, navigation }) => {
     <View style={styles.row}>
       <View style={styles.columns}>
         <Text style={styles.labels}>Name</Text>
-        <Text style={styles.rowShortText}>{item.name}</Text>
+        <Text style={{fontSize: item.name.length >= 8? 13:18, color:'white'}}>{item.name}</Text>
       </View>
 
       <View style={styles.columns}>
         <Text style={styles.labels}>Symbol</Text>
-        <Text style={styles.rowShortText}>{item.symbol}</Text>
+        <Text style={{fontSize: item.symbol.length >= 3? 12:18, color:'white'}}>{item.symbol}</Text>
       </View>
 
       <View style={styles.columns}>
@@ -25,7 +25,7 @@ const Entry = ({ item, navigation }) => {
             color="green"
             style={{ marginRight: 5 }}
           />
-          <Text style={styles.rowLongText}>{item.price_usd}</Text>
+          <Text style={{fontSize: item.price_usd.length >= 4? 12:18, color:'white'}}>{item.price_usd}</Text>
         </View>
       </View>
 
@@ -55,12 +55,10 @@ const styles = StyleSheet.create({
   rowShortText: {
     fontSize: 20,
     color: "white",
-    fontFamily: "DMSansRegular",
   },
   rowLongText: {
     fontSize: 18,
     color: "white",
-    fontFamily: "DMSansRegular",
   },
   columns: {
     alignItems: "center",

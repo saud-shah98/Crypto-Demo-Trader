@@ -11,7 +11,7 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: Constants.manifest?.extra?.firebaseApiKey,
   authDomain: Constants.manifest?.extra?.firebaseAuthDomain,
-  databaseURL: "https://crypto-ba0ff-default-rtdb.firebaseio.com",
+  databaseURL: Constants.manifest?.extra?.firebaseDatabase,
   projectId: Constants.manifest?.extra?.firebaseProjectId,
   storageBucket: Constants.manifest?.extra?.firebaseStorageBucket,
   messagingSenderId: Constants.manifest?.extra?.firebaseMessagingSenderId,

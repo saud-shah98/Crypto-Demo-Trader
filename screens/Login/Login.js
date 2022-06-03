@@ -5,14 +5,13 @@ import {
   Button,
   Pressable,
   TextInput,
+  KeyboardAvoidingView,
 } from "react-native";
 import AppStyles from "../../AppStyles";
 
 const Login = ({ login, email, setEmail, password, setPassword }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.welecomeHeader}>Welcome</Text>
-
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.loginForms}>
         <TextInput
           style={styles.textInput}
@@ -38,7 +37,7 @@ const Login = ({ login, email, setEmail, password, setPassword }) => {
           <Text style={styles.loginBtnText}>Login</Text>
         </Pressable>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import AppLoading from "expo-app-loading";
 import { AuthContext } from "./AuthProvider";
 import AppStack from "./Stacks/AppStack";
 import AuthStack from "./Stacks/AuthStack";
 import { auth, db } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import { Text } from "react-native";
 
 const Router = () => {
@@ -24,7 +24,7 @@ const Router = () => {
   }, []);
 
   if (loading) {
-    return <Text>Loading</Text>;
+    return <AppLoading />;
   }
 
   return (
