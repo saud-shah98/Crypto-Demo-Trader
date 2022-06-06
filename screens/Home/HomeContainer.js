@@ -14,10 +14,13 @@ const options = {
 const HomeContainer = ({ navigation }) => {
   const [coinData, setCoinData] = useState([]);
   const [balance, setBalance] = useState(null);
-
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const { user, logout } = useContext(AuthContext);
+
+
+
+
 
   useEffect(() => {
     const signalController = new AbortController();
@@ -38,17 +41,15 @@ const HomeContainer = ({ navigation }) => {
       const docRef =  doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists() && mounted) {
-        console.log("Document data:", docSnap.data().balance);
         setBalance(docSnap.data().balance);
-
+      
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
     };
-
-    getCoins().then(console.log('coins recieved'));
-    getBalance().then(console.log(balance));
+    getCoins();
+    getBalance();
     const interval = setInterval(() => {
       getCoins();
     }, 2000);

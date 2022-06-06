@@ -1,9 +1,12 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, {useContext} from 'react'
 import Profile from './Profile';
+import {AuthContext} from '../../navigation/AuthProvider';
 
-export default function ProfileContainer() {
+export default function ProfileContainer({navigation}) {
+    const { user, logout } = useContext(AuthContext);
+
   return (
-   <Profile />
+   <Profile navigation={navigation} user={user} />
   )
 }

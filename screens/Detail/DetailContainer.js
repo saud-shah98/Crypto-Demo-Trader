@@ -2,7 +2,6 @@ import Detail from "./Detail";
 
 const DetailContainer = ({ navigation, route }) => {
   const { item } = route.params;
-  console.log(item);
   let details = {
     Name: item.name,
     Rank: item.rank,

@@ -1,8 +1,6 @@
 import {
-  View,
   StyleSheet,
   Text,
-  TextInput,
   Pressable,
   KeyboardAvoidingView,
   Platform,
@@ -42,7 +40,7 @@ const Register = ({
 
       <InputField title="User ID" setField={setUsername} />
       <InputField title="Email" setField={setEmail} />
-      <InputField title="Password" setField={setPassword} />
+      <InputField title="Password" password setField={setPassword} />
 
       {!(Platform.OS === "web") ? (
         <>

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, Pressable, Text } from "react-native";
+import { StyleSheet, SafeAreaView, Pressable, Text,View } from "react-native";
 import List from "../../components/List";
 import SearchBar from "../../components/SearchBar";
 import { SimpleLineIcons } from "@expo/vector-icons";
@@ -21,17 +21,18 @@ const Home = ({
 
   function BalanceHeader(){
     return(
-      <Text style={{ fontSize: 25, color: "white", textAlign:"center",marginTop:10, }}>
-          
-          Balance: ${balance}
+      <Text style={{ fontSize: 35, color: "white"}}>
+          Available Balance: ${balance}
         </Text>
     )
   }
 
-
-
   return (
     <SafeAreaView style={styles.root} edges={["top,left,right,bottom"]}>
+       
+       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',padding:20}}>
+       <SimpleLineIcons name="user" color="white" size={35} />
+      
       <Pressable
         onPress={() => {
           logout();
@@ -43,7 +44,7 @@ const Home = ({
       
       { balance!=null?<BalanceHeader />: <></>}
       
-
+</View>
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
@@ -67,10 +68,8 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   logoutBtn: {
-    justifyContent: "center",
-    width: "100%",
-    alignItems: "center",
-    marginTop: 10,
+
+
   },
 });
 export default Home;

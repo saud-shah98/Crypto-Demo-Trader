@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }) => {
               }
             );
 
-            // await saveUserDetails(user);
           } catch (e) {
             console.log(e);
             alert(e);

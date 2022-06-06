@@ -13,14 +13,11 @@ const db = admin.firestore();
 //
 
 exports.setInitialBalance = functions.auth.user().onCreate(async (user) => {
-   console.log(user.uid)
    const userRef =  db.collection('users').doc(user.uid)
 
    userRef.get().then((doc) => {
     if (doc.exists) {
         let {difficulty} = doc.data();
-        console.log("Document data:", doc.data());
-        console.log(difficulty);
         switch (difficulty) {
                           case "seasoned":
                             startBalance = 10000;
@@ -32,7 +29,7 @@ exports.setInitialBalance = functions.auth.user().onCreate(async (user) => {
                             startBalance = 50000;
                             break;
                         }
-    userRef.update({balance:startBalance}).then(console.log("User balance updated"));
+    userRef.update({balance:startBalance});
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");

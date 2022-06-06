@@ -14,6 +14,7 @@ const Router = () => {
 
   function userChange(user) {
     setUser(user);
+    
     if (initializing) setInitializing(false);
     setLoading(false);
   }

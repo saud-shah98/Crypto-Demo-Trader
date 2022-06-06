@@ -1,6 +1,6 @@
 import { TextInput, Text, View } from "react-native";
 
-const InputField = ({ title, setField }) => {
+const InputField = ({ title, setField,password }) => {
   return (
     <>
       <Text style={{ fontSize: 12, color: "black", marginTop: 15 }}>
@@ -11,6 +11,7 @@ const InputField = ({ title, setField }) => {
         selectionColor="white"
         onChangeText={setField}
         placeholderTextColor="white"
+        secureTextEntry={password ? true: false}
         style={{
           color: "white",
           height: 50,
