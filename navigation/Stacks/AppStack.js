@@ -1,21 +1,22 @@
-import React,{useContext} from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {Button} from 'react-native';
-import Home from '../../screens/Home';
-import Detail from '../../screens/Detail';
-import { AuthContext } from '../AuthProvider';
-
+import React, { useContext } from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeContainer from "../../screens/Home/HomeContainer";
+import DetailContainer from "../../screens/Detail/DetailContainer";
+import ProfileContainer from "../../screens/Profile/ProfileContainer";
 const Stack = createNativeStackNavigator();
 
-
 const AppStack = () => {
-   
-    return(
-        <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
-            <Stack.Screen name="Detail" component={Detail} />
-        </Stack.Navigator>
-    )
-}
+  return (
+    <Stack.Navigator>
+     
+      <Stack.Screen
+        name="Home"
+        component={HomeContainer}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Detail" component={DetailContainer} />
+    </Stack.Navigator>
+  );
+};
 
 export default AppStack;
