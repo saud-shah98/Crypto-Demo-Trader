@@ -1,27 +1,28 @@
-import {TextInput,Text} from 'react-native';
+import { TextInput, Text, View } from "react-native";
 
-const InputField = ({title,setField}) =>{
-    return(
+const InputField = ({ title, setField }) => {
+  return (
     <>
-    
-    <Text style={{ fontSize: 18, color: "white",marginTop:10}}>{title}</Text>
-    <TextInput
-            placeholder={title}
-            selectionColor="white"
-            onChangeText={setField}
-            placeholderTextColor="gray"
-            style={{
-              color: "whitesmoke",
-              height: 50,
-              borderRadius: 3,
-              borderWidth: 3,
-              borderColor: "whitesmoke",
-              paddingHorizontal: 10,
-              marginTop: 10,
-            }}
-          />
+      <Text style={{ fontSize: 12, color: "black", marginTop: 15 }}>
+        {title}
+      </Text>
+      <TextInput
+        placeholder={`Enter your ${title}`}
+        selectionColor="white"
+        onChangeText={setField}
+        placeholderTextColor="white"
+        style={{
+          color: "white",
+          height: 50,
+          borderRadius: 3,
+          paddingHorizontal: 10,
+          marginTop: 5,
+          width: 330,
+          backgroundColor: "black",
+        }}
+      />
     </>
-    );
-}
+  );
+};
 
 export default InputField;

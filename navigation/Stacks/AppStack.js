@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeContainer from "../../screens/Home/HomeContainer";
 import DetailContainer from "../../screens/Detail/DetailContainer";
-
+import ProfileContainer from "../../screens/Profile/ProfileContainer";
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
@@ -14,6 +14,7 @@ const AppStack = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="Detail" component={DetailContainer} />
+      <Stack.Screen name="Profile" component={ProfileContainer} />
     </Stack.Navigator>
   );
 };

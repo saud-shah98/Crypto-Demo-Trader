@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthContext = createContext({});
 
@@ -24,13 +25,23 @@ export const AuthProvider = ({ children }) => {
             alert(e);
           }
         },
-        register: async (email, password) => {
+        register: async (email, password, username, difficulty) => {
           try {
-            const user = await createUserWithEmailAndPassword(
-              auth,
-              email,
-              password
+            await createUserWithEmailAndPassword(auth, email, password).then(
+              (creds) => {
+                const userRef = doc(db, "users", creds.user.uid);
+                setDoc(
+                  userRef,
+                  {
+                    username: username,
+                    email: email,
+                    difficulty: difficulty,
+                  },
+                  { merge: true }
+                );
+              }
             );
+
             // await saveUserDetails(user);
           } catch (e) {
             console.log(e);

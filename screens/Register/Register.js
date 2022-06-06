@@ -5,29 +5,68 @@ import {
   TextInput,
   Pressable,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Picker } from "@react-native-picker/picker";
 import InputField from "../../components/InputField";
 import AppStyles from "../../AppStyles";
 
 const Register = ({
-  email,
-  password,
-  setEmail,
-  setPassword,
-  setUserName,
   register,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  username,
+  setUsername,
+  dob,
+  setDob,
+  difficulty,
+  setDifficulty,
 }) => {
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.registerBox}>
-        <InputField title="User Name" setField={setUserName} />
-        <InputField title="Email" setField={setEmail} />
-        <InputField title="Password" setField={setPassword} />
-      </View>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "position" : "height"}
+    >
+      <Picker
+        selectedValue={difficulty}
+        onValueChange={(itemValue, itemIndex) => setDifficulty(itemValue)}
+        style={{ width: 350 }}
+      >
+        <Picker.Item color="black" label="Casual: $50,0000" value="casual" />
+        <Picker.Item color="black" label="Seasoned: $10,000" value="seasoned" />
+        <Picker.Item color="black" label="Ironman: $500" value="ironman" />
+      </Picker>
+
+      <InputField title="User ID" setField={setUsername} />
+      <InputField title="Email" setField={setEmail} />
+      <InputField title="Password" setField={setPassword} />
+
+      {!(Platform.OS === "web") ? (
+        <>
+          <Text style={{ color: "black", fontSize: 15, marginTop: 15 }}>
+            Date of Birth
+          </Text>
+          <DateTimePicker
+            mode="date"
+            value={dob}
+            onChange={(event, selectedDate) => setDob(selectedDate)}
+            style={{
+              marginTop: 5,
+              backgroundColor: "white",
+              width: 75,
+            }}
+          />
+        </>
+      ) : (
+        <Text>Web Version Incoming..</Text>
+      )}
 
       <Pressable
         style={styles.loginBtn}
-        onPress={() => register(email, password)}
+        onPress={() => register(email, password,username,difficulty)}
       >
         <Text style={styles.loginBtnText}>Register</Text>
       </Pressable>
@@ -39,23 +78,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "whitesmoke",
-    justifyContent: "center",
     alignItems: "center",
+    paddingVertical: 50,
   },
-  registerBox: {
-    marginTop: 15,
-    backgroundColor: AppStyles.theme_1.GREY,
-    margin: 10,
-    padding: 20,
-    width: "85%",
-    justifyContent: "space-between",
-  },
+
   loginBtn: {
-    backgroundColor: "darkgreen",
-    width: "60%",
-    marginTop: 5,
+    backgroundColor: "black",
+    width: 350,
     height: 60,
     justifyContent: "center",
+    marginTop: 20,
     alignItems: "center",
   },
   loginBtnText: {

@@ -11,20 +11,35 @@ const db = admin.firestore();
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-exports.helloWorld = functions.https.onCall((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
-});
 
 exports.setInitialBalance = functions.auth.user().onCreate(async (user) => {
    console.log(user.uid)
-   await db.collection('users').doc(user.uid).set({balance:0,email:user.email})
+   const userRef =  db.collection('users').doc(user.uid)
+
+   userRef.get().then((doc) => {
+    if (doc.exists) {
+        let {difficulty} = doc.data();
+        console.log("Document data:", doc.data());
+        console.log(difficulty);
+        switch (difficulty) {
+                          case "seasoned":
+                            startBalance = 10000;
+                            break;
+                          case "ironman":
+                            startBalance = 500;
+                            break;
+                          default:
+                            startBalance = 50000;
+                            break;
+                        }
+    userRef.update({balance:startBalance}).then(console.log("User balance updated"));
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
 });
 
-exports.getBalance = functions.https.onCall((request,response) => {
-  console.log(user.uid)
-  console.log(request)
-  // const ref = db.collection('users').doc(request.data)
-  response.send("Hello from Firebase!");
-  response.sned(request)
 });
+
