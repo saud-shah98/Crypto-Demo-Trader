@@ -21,8 +21,8 @@ const Home = ({
 
   function BalanceHeader(){
     return(
-      <Text style={{ fontSize: 24, color: "white"}}>
-          Available Balance: ${balance}
+      <Text style={{ fontSize: 20, color: "white"}}>
+          Balance: ${balance}
         </Text>
     )
   }
@@ -30,9 +30,9 @@ const Home = ({
   return (
     <SafeAreaView style={styles.root} edges={["top,left,right,bottom"]}>
        
-       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',padding:20}}>
+       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-evenly',padding:20}}>
        <SimpleLineIcons name="user" color="white" size={35} />
-      
+       { balance!=null?<BalanceHeader />: <></>}
       <Pressable
         onPress={() => {
           logout();
@@ -42,7 +42,7 @@ const Home = ({
         <SimpleLineIcons name="logout" color="white" size={35} />
       </Pressable>
       
-      { balance!=null?<BalanceHeader />: <></>}
+     
       
 </View>
       <SearchBar
