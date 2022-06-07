@@ -21,7 +21,7 @@ const Home = ({
 
   function BalanceHeader(){
     return(
-      <Text style={{ fontSize: 35, color: "white"}}>
+      <Text style={{ fontSize: 24, color: "white"}}>
           Available Balance: ${balance}
         </Text>
     )
