@@ -62,9 +62,9 @@ const Register = ({
           value="ironman"
         />
       </Picker>
-      <View style={{ alignItems: "center" }}>
+     
         <Button title="Register" />
-      </View>
+    
     </KeyboardAvoidingView>
   );
 };

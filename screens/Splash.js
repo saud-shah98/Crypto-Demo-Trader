@@ -20,7 +20,7 @@ export default function Splash({ navigation }) {
         style={styles.splashImg}
         source={require("../assets/splash1.jpg")}
       />
-      <ButtonBox spacing={45}>
+      <ButtonBox>
         <Button
           title="Login"
           action={() => navigation.navigate("Login")}
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
+
   },
   splashImg: {
-    width: '80%',
-    height: '50%',
-    marginTop: 30,
+    width: "80%",
+    height: "60%",
   },
 });

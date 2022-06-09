@@ -7,20 +7,20 @@ export default function Logo() {
     <View
       style={{
         backgroundColor: AppStyles.theme_1.ORANGE,
-        height: 110,
-        width: '70%',
+        height: 80,
+       width: 240,
+        marginVertical:10,
         alignItems: "center",
         borderRadius: 50,
         justifyContent: "center",
-        marginTop: 30,
       }}
     >
-      <Text style={{ fontSize: 60, color: AppStyles.theme_1.WHITE }}>
+      <Text style={{ fontSize: 38, color: AppStyles.theme_1.WHITE }}>
         Lotello
       </Text>
       <Text
         style={{
-          fontSize: 15,
+          fontSize: 12,
           color: AppStyles.theme_1.WHITE,
           paddingBottom: 10,
         }}

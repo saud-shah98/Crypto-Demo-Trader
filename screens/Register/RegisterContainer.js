@@ -5,9 +5,9 @@ import Register from "./Register";
 const RegisterContainer = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username,setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [dob, setDob] = useState(new Date());
-  const [difficulty, setDifficulty] = useState('Casual');
+  const [difficulty, setDifficulty] = useState("Casual");
 
   const { register } = useContext(AuthContext);
 

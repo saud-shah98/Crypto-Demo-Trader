@@ -10,9 +10,10 @@ export default function Button({ title, color, spacing, action }) {
           color == "DARK" ? AppStyles.theme_1.DARK : AppStyles.theme_1.ORANGE,
         alignItems: "center",
         height: 60,
-        width: '85%',
+        width: 300,
+        marginVertical:5,
         justifyContent: "center",
-        marginTop: spacing > 0 ? spacing : 0,
+        
       }}
       onPress={action}
     >
