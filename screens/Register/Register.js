@@ -63,7 +63,8 @@ const Register = ({
         />
       </Picker>
      
-        <Button title="Register" />
+                <Button title="Register" action={() => register(email,password,username, difficulty)} />
+
     
     </KeyboardAvoidingView>
   );
