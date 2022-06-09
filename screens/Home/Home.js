@@ -21,18 +21,29 @@ const Home = ({
 
   function BalanceHeader(){
     return(
-      <Text style={{ fontSize: 20, color: "white"}}>
-          Balance: ${balance}
+      <View style={{alignItems:'center'}}>
+    
+    <Text style={{ fontSize: 15, color: "white",marginTop:5}}>
+          Balance
         </Text>
+      <Text style={{ fontSize: 15, color: "white"}}>
+          ${balance}
+        </Text>
+
+   
+      </View>
     )
   }
 
   return (
     <SafeAreaView style={styles.root} edges={["top,left,right,bottom"]}>
        
-       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-evenly',padding:20}}>
-       <SimpleLineIcons name="user" color="white" size={35} />
+       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',paddingTop:15}}>
+       <SimpleLineIcons name="user" color="white" size={30} />
        { balance!=null?<BalanceHeader />: <></>}
+      
+      
+     
       <Pressable
         onPress={() => {
           logout();
@@ -41,6 +52,7 @@ const Home = ({
       >
         <SimpleLineIcons name="logout" color="white" size={35} />
       </Pressable>
+      
       
      
       
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     // Controls Background For Search Bar + Remainder of the Page after Search
-    backgroundColor: "black",
+    backgroundColor: AppStyles.theme_1.DARK,
   },
   logoutBtn: {
 

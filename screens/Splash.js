@@ -7,30 +7,31 @@ import {
   SafeAreaView,
   Image,
 } from "react-native";
+import Logo from "../components/Logo";
+import Button from "../components/Button";
+import ButtonBox from "../components/ButtonBox";
 import AppStyles from "../AppStyles";
 
 export default function Splash({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.splash}>
-        <Image
-          style={styles.splashImg}
-          source={require("../assets/splash1.jpg")}
+      <Logo />
+      <Image
+        style={styles.splashImg}
+        source={require("../assets/splash1.jpg")}
+      />
+      <ButtonBox spacing={45}>
+        <Button
+          title="Login"
+          action={() => navigation.navigate("Login")}
+          color="DARK"
         />
-
-        <Pressable
-          style={styles.loginBtn}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.splashText_secondary}>Login</Text>
-        </Pressable>
-        <Pressable
-          style={styles.registerBtn}
-          onPress={() => navigation.navigate("Register")}
-        >
-          <Text style={styles.splashText}>Create an Account</Text>
-        </Pressable>
-      </View>
+        <Button
+          title="Register"
+          action={() => navigation.navigate("Register")}
+          spacing={25}
+        />
+      </ButtonBox>
     </SafeAreaView>
   );
 }
@@ -38,40 +39,12 @@ export default function Splash({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  splash: {
-    backgroundColor: "whitesmoke",
-    flex: 1,
+    backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "space-evenly",
   },
   splashImg: {
-    width: "90%",
-    height: "70%",
-  },
-  splashText: {
-    color: AppStyles.theme_1.DARKGREEN,
-    fontSize: 25,
-  },
-  splashText_secondary: {
-    color: AppStyles.theme_1.WHEAT,
-    fontSize: 25,
-  },
-  loginBtn: {
-    backgroundColor: AppStyles.theme_1.GREY,
-    minWidth: "90%",
-    alignItems: "center",
-    height: 60,
-    justifyContent: "center",
-  },
-  registerBtn: {
-    backgroundColor: "whitesmoke",
-    minWidth: "90%",
-    alignItems: "center",
-    height: 60,
-    justifyContent: "center",
-    borderRadius: 2,
-    borderColor: AppStyles.theme_1.GREY,
-    borderWidth: 2,
+    width: '80%',
+    height: '50%',
+    marginTop: 30,
   },
 });
