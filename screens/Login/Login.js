@@ -44,7 +44,7 @@ const Login = ({ login, email, setEmail, password, setPassword }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: AppStyles.theme_1.DARK,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -64,15 +64,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   textInput: {
-    width: "65%",
-    backgroundColor: AppStyles.theme_1.GREY,
+    width: 300,
+    backgroundColor: AppStyles.theme_1.WHEAT,
     height: 50,
     paddingHorizontal: 25,
-    color: "white",
+    color: "black",
   },
   loginBtn: {
-    backgroundColor: "darkgreen",
-    width: "60%",
+    backgroundColor: AppStyles.theme_1.ORANGE,
+    width: 300,
     marginTop: 5,
     height: 60,
     justifyContent: "center",

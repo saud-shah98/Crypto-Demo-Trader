@@ -4,11 +4,15 @@ import {
   Pressable,
   KeyboardAvoidingView,
   Platform,
+  View,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 import InputField from "../../components/InputField";
+import Date from "../../components/Date";
+import Button from "../../components/Button";
 import AppStyles from "../../AppStyles";
+import Logo from "../../components/Logo";
 
 const Register = ({
   register,
@@ -28,46 +32,39 @@ const Register = ({
       style={styles.container}
       behavior={Platform.OS === "ios" ? "position" : "height"}
     >
-      <Picker
-        selectedValue={difficulty}
-        onValueChange={(itemValue, itemIndex) => setDifficulty(itemValue)}
-        style={{ width: 350 }}
-      >
-        <Picker.Item color="black" label="Casual: $50,0000" value="casual" />
-        <Picker.Item color="black" label="Seasoned: $10,000" value="seasoned" />
-        <Picker.Item color="black" label="Ironman: $500" value="ironman" />
-      </Picker>
-
       <InputField title="User ID" setField={setUsername} />
       <InputField title="Email" setField={setEmail} />
       <InputField title="Password" password setField={setPassword} />
 
-      {!(Platform.OS === "web") ? (
-        <>
-          <Text style={{ color: "black", fontSize: 15, marginTop: 15 }}>
-            Date of Birth
-          </Text>
-          <DateTimePicker
-            mode="date"
-            value={dob}
-            onChange={(event, selectedDate) => setDob(selectedDate)}
-            style={{
-              marginTop: 5,
-              backgroundColor: "white",
-              width: 75,
-            }}
-          />
-        </>
-      ) : (
-        <Text>Web Version Incoming..</Text>
-      )}
+      <Date dob={dob} setDob={setDob} spacing={15} />
 
-      <Pressable
-        style={styles.loginBtn}
-        onPress={() => register(email, password,username,difficulty)}
+      <Text style={{ fontSize: 18, color: "white", marginTop: 15 }}>
+        Starting Balance
+      </Text>
+      <Picker
+        selectedValue={difficulty}
+        onValueChange={(itemValue, itemIndex) => setDifficulty(itemValue)}
+        style={{ width: 350, marginTop: 5 }}
       >
-        <Text style={styles.loginBtnText}>Register</Text>
-      </Pressable>
+        <Picker.Item
+          color={AppStyles.theme_1.WHITE}
+          label="Casual: $50,0000"
+          value="casual"
+        />
+        <Picker.Item
+          color={AppStyles.theme_1.WHITE}
+          label="Seasoned: $10,000"
+          value="seasoned"
+        />
+        <Picker.Item
+          color={AppStyles.theme_1.WHITE}
+          label="Ironman: $500"
+          value="ironman"
+        />
+      </Picker>
+      <View style={{ alignItems: "center" }}>
+        <Button title="Register" />
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -75,9 +72,9 @@ const Register = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "whitesmoke",
+    backgroundColor: AppStyles.theme_1.DARK,
     alignItems: "center",
-    paddingVertical: 50,
+    justifyContent: "center",
   },
 
   loginBtn: {

@@ -19,20 +19,20 @@ const Detail = ({ item }) => {
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 52, color: "white" }}>{name}</Text>
-      <Text style={{ fontSize: 25, color: "white" }}>Price: ${price_usd}</Text>
-      <Text style={{ fontSize: 25, color: "white" }}>
+      <Text style={{ fontSize: 16, color: "white" }}>Price: ${price_usd}</Text>
+      <Text style={{ fontSize: 16, color: "white" }}>
         Price: {price_btc} BTC
       </Text>
-      <Text style={{ fontSize: 25, color: "white" }}>
+      <Text style={{ fontSize: 16, color: "white" }}>
         1hr Change: {percent_change_1h}%
       </Text>
-      <Text style={{ fontSize: 25, color: "white" }}>
+      <Text style={{ fontSize: 16, color: "white" }}>
         24hr Change: {percent_change_24h}%
       </Text>
-      <Text style={{ fontSize: 25, color: "white" }}>
+      <Text style={{ fontSize: 16, color: "white" }}>
         7 day Change: {percent_change_7d}%
       </Text>
-      <Text style={{ fontSize: 25, color: "white" }}>
+      <Text style={{ fontSize: 16, color: "white" }}>
         Market Cap: {market_cap_usd}
       </Text>
       {/* {Object.entries(item).map(([id,value]) => {
@@ -47,10 +47,10 @@ const Detail = ({ item }) => {
 
       <TouchableOpacity
         style={{
-          width: "50%",
+          width: 300,
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "darkgreen",
+          backgroundColor: AppStyles.theme_1.ORANGE,
           paddingVertical: 25,
         }}
       >
@@ -59,7 +59,7 @@ const Detail = ({ item }) => {
 
       <TouchableOpacity
         style={{
-          width: "50%",
+          width: 300,
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "darkred",
@@ -75,7 +75,7 @@ const Detail = ({ item }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AppStyles.theme_1.GREY,
+    backgroundColor: AppStyles.theme_1.DARK,
     alignItems: "center",
     justifyContent: "space-around",
   },
@@ -83,8 +83,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#1a1b1c",
     borderRadius: 3,
     borderColor: "#142e1b",
-
-    borderBottomWidth: 8,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -93,9 +91,6 @@ const styles = StyleSheet.create({
   },
   id: {
     fontSize: 20,
-    color: AppStyles.theme_1.WHEAT,
-  },
-  val: {
     color: AppStyles.theme_1.WHEAT,
   },
 });

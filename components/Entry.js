@@ -43,13 +43,14 @@ const Entry = ({ item, navigation }) => {
 };
 const styles = StyleSheet.create({
   row: {
-    backgroundColor: AppStyles.theme_1.DARKGREEN,
+    backgroundColor: AppStyles.theme_1.ORANGE,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    height: 100,
+    height: 80,
     marginVertical: 5,
-    width:'85%',
+    borderRadius:50,
+    width:'90%',
     alignSelf:'center'
   },
   rowShortText: {

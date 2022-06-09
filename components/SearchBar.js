@@ -22,7 +22,7 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
         {/* Input field */}
         <TextInput
           style={styles.input}
-          placeholder="Search"
+          placeholder="Search for a cryptocurrency"
           placeholderTextColor="grey"
           value={searchPhrase}
           onChangeText={setSearchPhrase}
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: "row",
     width: "95%",
-    backgroundColor: AppStyles.theme_1.GREY,
+    backgroundColor: AppStyles.theme_1.DARK2,
     borderRadius: 15,
     alignItems: "center",
   },

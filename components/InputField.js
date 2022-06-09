@@ -1,9 +1,11 @@
 import { TextInput, Text, View } from "react-native";
-
+import AppStyles from "../AppStyles";
 const InputField = ({ title, setField,password }) => {
   return (
-    <>
-      <Text style={{ fontSize: 12, color: "black", marginTop: 15 }}>
+    <View>
+
+  
+      <Text style={{ fontSize: 15, color: AppStyles.theme_1.WHITE,paddingVertical:12}}>
         {title}
       </Text>
       <TextInput
@@ -13,16 +15,14 @@ const InputField = ({ title, setField,password }) => {
         placeholderTextColor="white"
         secureTextEntry={password ? true: false}
         style={{
-          color: "white",
-          height: 50,
-          borderRadius: 3,
-          paddingHorizontal: 10,
-          marginTop: 5,
-          width: 330,
-          backgroundColor: "black",
+            backgroundColor: AppStyles.theme_1.WHEAT,
+            height: 50,
+            paddingHorizontal: 25,
+            color: "black",
+          
         }}
       />
-    </>
+      </View>
   );
 };
 
