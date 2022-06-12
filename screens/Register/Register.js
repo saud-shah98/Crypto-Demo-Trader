@@ -32,15 +32,7 @@ const Register = ({
       style={styles.container}
       behavior={Platform.OS === "ios" ? "position" : "height"}
     >
-      <InputField title="User ID" setField={setUsername} />
-      <InputField title="Email" setField={setEmail} />
-      <InputField title="Password" password setField={setPassword} />
-
-      <Date dob={dob} setDob={setDob} spacing={15} />
-
-      <Text style={{ fontSize: 18, color: "white", marginTop: 15 }}>
-        Starting Balance
-      </Text>
+      <Text style={{ fontSize: 18, color: "white" }}>Starting Balance</Text>
       <Picker
         selectedValue={difficulty}
         onValueChange={(itemValue, itemIndex) => setDifficulty(itemValue)}
@@ -62,10 +54,22 @@ const Register = ({
           value="ironman"
         />
       </Picker>
+
+
+      <InputField title="User ID" setField={setUsername} />
+      <InputField title="Email" setField={setEmail} />
+      <InputField title="Password" password setField={setPassword} />
+
+      <Button
+        title="Register"
+        action={() => register(email, password, username, difficulty)}
+      />
+
      
                 <Button title="Register" action={() => register(email,password,username, difficulty)} />
 
     
+
     </KeyboardAvoidingView>
   );
 };

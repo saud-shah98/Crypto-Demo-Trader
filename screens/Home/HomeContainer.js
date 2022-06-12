@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../navigation/AuthProvider";
 import Home from "./Home";
 import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 const options = {
   method: "GET",
@@ -17,10 +17,6 @@ const HomeContainer = ({ navigation }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const { user, logout } = useContext(AuthContext);
-
-
-
-
 
   useEffect(() => {
     const signalController = new AbortController();
@@ -38,15 +34,10 @@ const HomeContainer = ({ navigation }) => {
     };
 
     const getBalance = async () => {
-      const docRef =  doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists() && mounted) {
-        setBalance(docSnap.data().balance);
-      
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+      const docRef = onSnapshot(doc(db, "users", user.uid), (doc) => {
+        console.log("Current data: ", doc.data().balance);
+        setBalance(doc.data().balance);
+      });
     };
     getCoins();
     getBalance();

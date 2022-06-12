@@ -40,3 +40,5 @@ exports.setInitialBalance = functions.auth.user().onCreate(async (user) => {
 
 });
 
+
+

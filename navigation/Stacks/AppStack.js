@@ -13,7 +13,11 @@ const AppStack = () => {
         name="Home"
         component={HomeContainer}
         options={{ headerShown: false }}
-      />
+      /><Stack.Screen
+      name="Profile"
+      component={ProfileContainer}
+      
+    />
       <Stack.Screen name="Detail" component={DetailContainer} />
     </Stack.Navigator>
   );
