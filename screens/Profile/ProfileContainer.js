@@ -19,6 +19,7 @@ export default function ProfileContainer({ navigation }) {
   const [inventory, setInventory] = useState([]);
   const [totalInvested, setTotalInvested] = useState(null);
 
+
   useEffect(() => {
     const initialize = async () => {
       const docRef = onSnapshot(doc(db, "users", user.uid), (person) => {
