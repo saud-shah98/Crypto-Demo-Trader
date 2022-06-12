@@ -55,6 +55,7 @@ const Register = ({
         />
       </Picker>
 
+
       <InputField title="User ID" setField={setUsername} />
       <InputField title="Email" setField={setEmail} />
       <InputField title="Password" password setField={setPassword} />
@@ -63,6 +64,12 @@ const Register = ({
         title="Register"
         action={() => register(email, password, username, difficulty)}
       />
+
+     
+                <Button title="Register" action={() => register(email,password,username, difficulty)} />
+
+    
+
     </KeyboardAvoidingView>
   );
 };
