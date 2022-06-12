@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import AppStyles from "../../AppStyles";
 
-const Detail = ({ item }) => {
+const Detail = ({ item, Buy }) => {
   let {
     name,
     percent_change_1h,
@@ -35,15 +35,6 @@ const Detail = ({ item }) => {
       <Text style={{ fontSize: 16, color: "white" }}>
         Market Cap: {market_cap_usd}
       </Text>
-      {/* {Object.entries(item).map(([id,value]) => {
-                return(
-                <View key={id} style={styles.idVals}>
-                    <Text style={styles.id}>{id}</Text>
-                    <Text style={styles.val}>{value}</Text>
-
-                 </View>
-                )
-            })} */}
 
       <TouchableOpacity
         style={{
@@ -53,6 +44,7 @@ const Detail = ({ item }) => {
           backgroundColor: AppStyles.theme_1.ORANGE,
           paddingVertical: 25,
         }}
+        onPress={() => Buy(item)}
       >
         <Text style={{ color: "white", fontSize: 20 }}>Buy</Text>
       </TouchableOpacity>

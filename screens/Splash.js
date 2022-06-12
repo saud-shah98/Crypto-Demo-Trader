@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
-
   },
   splashImg: {
     width: "80%",
