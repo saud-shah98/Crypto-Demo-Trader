@@ -24,8 +24,8 @@ const InventoryEntry = ({ item, navigation }) => {
       );
       const result = await response.json();
       setCurrentPriceUSD(result[0].price_usd);
-      setProfitLoss(parseFloat(parseFloat(item.bought_price).toFixed(2) - parseFloat(result[0].price_usd).toFixed(2)).toFixed(2));
-    };
+      let change = parseFloat(result[0].price_usd).toFixed(2) - parseFloat(item.bought_price).toFixed(2)
+      setProfitLoss(change.toFixed(2))};
     getProfitLoss();
   }, []);
 
@@ -35,7 +35,7 @@ const InventoryEntry = ({ item, navigation }) => {
         <Text style={styles.labels}>Name</Text>
         <Text
           style={{
-            fontSize: item.coinName.length >= 8 ? 13 : 18,
+            fontSize: item.coinName.length >= 8 ? 13 : 15,
             color: AppStyles.theme_1.DARK,
           }}
         >
@@ -47,7 +47,7 @@ const InventoryEntry = ({ item, navigation }) => {
         <Text style={styles.labels}>Quantity</Text>
         <Text
           style={{
-            fontSize: item.quantity >= 3 ? 12 : 18,
+           fontSize:15,
             color: AppStyles.theme_1.DARK,
           }}
         >
@@ -60,13 +60,13 @@ const InventoryEntry = ({ item, navigation }) => {
         <View style={styles.priceColumn}>
           <Foundation
             name="dollar"
-            size={25}
+            size={12}
             color="green"
-            style={{ marginRight: 5 }}
+            style={{ marginRight: 3 }}
           />
           <Text
             style={{
-              fontSize: item.bought_at >= 4 ? 12 : 18,
+              fontSize: 12,
               color: AppStyles.theme_1.DARK,
             }}
           >
@@ -76,26 +76,25 @@ const InventoryEntry = ({ item, navigation }) => {
       </View>
 
       <View style={styles.columns}>
+        <Text style={styles.labels}>Current Price</Text>
+        <Text style={styles.rowShortText}>
+          ${parseFloat(current_price_usd).toFixed(2)}
+        </Text>
+      </View>
+
+      {/* <View style={styles.columns}>
         <Text style={styles.labels}>Invested</Text>
         <Text style={styles.rowShortText}>
           ${parseFloat(item.quantity * item.bought_price).toFixed(2)}
         </Text>
-      </View>
+      </View> */}
 
       <View style={styles.columns}>
         <Text style={styles.labels}>Gain/Loss</Text>
         <Text style={styles.rowShortText}>{profitLoss}</Text>
       </View>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Home", { item: item })}
-      >
-        <AntDesign
-          name="rightcircleo"
-          size={29}
-          color={AppStyles.theme_1.DARK}
-        />
-      </TouchableOpacity>
+    
     </View>
   );
 };
@@ -103,16 +102,17 @@ const styles = StyleSheet.create({
   row: {
     backgroundColor: AppStyles.theme_1.WHITE,
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "center",
     height: 80,
     marginVertical: 5,
-    borderRadius: 50,
+    borderRadius: 10,
     width: "98%",
     alignSelf: "center",
+    paddingHorizontal:25,
   },
   rowShortText: {
-    fontSize: 20,
+    fontSize: 12,
     color: AppStyles.theme_1.DARK,
   },
   rowLongText: {
