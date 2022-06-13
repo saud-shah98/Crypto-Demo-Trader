@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import BuyModal from '../../components/BuyModal';
 import AppStyles from "../../AppStyles";
 
-const Detail = ({ item, Buy }) => {
+const Detail = ({ item, Buy,modalVisible,setModalVisible }) => {
   let {
     name,
     percent_change_1h,
@@ -36,7 +37,7 @@ const Detail = ({ item, Buy }) => {
         Market Cap: {market_cap_usd}
       </Text>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           width: 300,
           justifyContent: "center",
@@ -47,9 +48,10 @@ const Detail = ({ item, Buy }) => {
         onPress={() => Buy(item)}
       >
         <Text style={{ color: "white", fontSize: 20 }}>Buy</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
+      </TouchableOpacity> */}
+      
+      <BuyModal modalVisible={modalVisible} setModalVisible={setModalVisible} item={item} Buy={Buy} />
+      {/* <TouchableOpacity
         style={{
           width: 300,
           justifyContent: "center",
@@ -59,7 +61,7 @@ const Detail = ({ item, Buy }) => {
         }}
       >
         <Text style={{ color: "white", fontSize: 20 }}>Sell</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

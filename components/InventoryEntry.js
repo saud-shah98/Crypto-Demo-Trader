@@ -11,11 +11,9 @@ const options = {
   },
 };
 
-const InventoryEntry = ({ item, navigation }) => {
+const InventoryEntry = ({ item, navigation,totalProfitLoss,setTotalProfitLoss }) => {
   const [current_price_usd, setCurrentPriceUSD] = useState();
   const [profitLoss, setProfitLoss] = useState();
-
-  console.log(profitLoss);
   useEffect(() => {
     const getProfitLoss = async () => {
       const response = await fetch(
@@ -25,7 +23,15 @@ const InventoryEntry = ({ item, navigation }) => {
       const result = await response.json();
       setCurrentPriceUSD(result[0].price_usd);
       let change = parseFloat(result[0].price_usd).toFixed(2) - parseFloat(item.bought_price).toFixed(2)
-      setProfitLoss(change.toFixed(2))};
+      let changeRounded = parseFloat(change.toFixed(2))
+      let totalProfitLossRounded = parseFloat(totalProfitLoss).toFixed(2)
+
+      setProfitLoss(changeRounded)
+      console.log(totalProfitLoss)
+      setTotalProfitLoss((prev) => prev + changeRounded)
+
+    };
+      
     getProfitLoss();
   }, []);
 
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
   row: {
     backgroundColor: AppStyles.theme_1.WHITE,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     height: 80,
     marginVertical: 5,
