@@ -14,6 +14,8 @@ export default function Profile({
   logout,
   inventory,
   totalInvested,
+  totalProfitLoss,
+  setTotalProfitLoss,
 }) {
   const roundedBalance = parseFloat(balance).toFixed(2);
   const roundedInvestment = parseFloat(totalInvested).toFixed(2);
@@ -21,14 +23,14 @@ export default function Profile({
     
     <View style={styles.container}>
 
-      <ProfileHeader username={username} roundedBalance={roundedBalance} roundedInvestment={roundedInvestment} />
+      <ProfileHeader username={username} roundedBalance={roundedBalance} totalProfitLoss={totalProfitLoss} setTotalProfitLoss={setTotalProfitLoss} roundedInvestment={roundedInvestment} />
 
       <FlatList
         data={inventory}
         style={{ marginTop: 5 }}
         keyExtractor={(item, index) => index}
         renderItem={({ item, index }) => (
-          <InventoryEntry item={item} key={index} />
+          <InventoryEntry item={item} key={index} totalProfitLoss={totalProfitLoss} setTotalProfitLoss={setTotalProfitLoss} />
         )}
       />
       

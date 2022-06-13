@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Detail from "./Detail";
 import { doc, runTransaction, increment } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -8,6 +8,7 @@ import { Alert } from "react-native";
 const DetailContainer = ({ navigation, route }) => {
   const { item } = route.params;
   const { user } = useContext(AuthContext);
+  const [modalVisible,setModalVisible] = useState(false)
 
   let details = {
     Name: item.name,
@@ -20,7 +21,7 @@ const DetailContainer = ({ navigation, route }) => {
     "Market Cap USA": item.market_cap_usd,
   };
 
-  async function Buy(item) {
+  async function Buy(item,quantity) {
     const priceCoin = parseFloat(item.price_usd);
     const userRef = doc(db, "users", user.uid);
     try {
@@ -30,7 +31,6 @@ const DetailContainer = ({ navigation, route }) => {
           throw "Document does not exist!";
         }
 
-        const quantity = 1;
         const newBalance =
           parseFloat(userDoc.data().balance) - priceCoin * quantity;
 
@@ -57,7 +57,7 @@ const DetailContainer = ({ navigation, route }) => {
           );
 
           transaction.update(inventoryRef, {
-            quantity: increment(1),
+            quantity: increment(quantity),
           });
 
           console.log("Updated");
@@ -82,6 +82,8 @@ const DetailContainer = ({ navigation, route }) => {
       item={item}
       details={details}
       Buy={Buy}
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
     />
   );
 };

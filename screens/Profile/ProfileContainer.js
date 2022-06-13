@@ -18,6 +18,8 @@ export default function ProfileContainer({ navigation }) {
   const [username, setUsername] = useState("");
   const [inventory, setInventory] = useState([]);
   const [totalInvested, setTotalInvested] = useState(null);
+  const [totalProfitLoss,setTotalProfitLoss] = useState(0.00);
+  
 
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function ProfileContainer({ navigation }) {
     };
 
     initialize();
-  }, [user]);
+  }, [user, totalProfitLoss]);
 
   return (
     <Profile
@@ -53,6 +55,8 @@ export default function ProfileContainer({ navigation }) {
       balance={balance}
       inventory={inventory}
       totalInvested={totalInvested}
+      totalProfitLoss={totalProfitLoss}
+      setTotalProfitLoss={setTotalProfitLoss}
     />
   );
 }
