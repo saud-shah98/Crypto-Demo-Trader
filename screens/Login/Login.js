@@ -2,7 +2,6 @@ import {
   View,
   StyleSheet,
   Text,
-  Button,
   Pressable,
   TextInput,
   KeyboardAvoidingView,
@@ -52,10 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "black",
     marginBottom: 20,
-  },
-  splashImg: {
-    width: "85%",
-    height: "70%",
   },
   loginForms: {
     height: 200,

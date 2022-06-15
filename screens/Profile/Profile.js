@@ -1,10 +1,9 @@
 import { View, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import InventoryEntry from "../../components/InventoryEntry";
-import ProfileHeader from '../../components/ProfileHeader';
-import Logout from '../../components/Logout';
+import ProfileHeader from "../../components/ProfileHeader";
+import Logout from "../../components/Logout";
 import AppStyles from "../../AppStyles";
-
 
 export default function Profile({
   balance,
@@ -16,34 +15,41 @@ export default function Profile({
   totalInvested,
   totalProfitLoss,
   setTotalProfitLoss,
+
 }) {
   const roundedBalance = parseFloat(balance).toFixed(2);
   const roundedInvestment = parseFloat(totalInvested).toFixed(2);
   return (
-    
     <View style={styles.container}>
-
-      <ProfileHeader username={username} roundedBalance={roundedBalance} totalProfitLoss={totalProfitLoss} setTotalProfitLoss={setTotalProfitLoss} roundedInvestment={roundedInvestment} />
+      <ProfileHeader
+        username={username}
+        roundedBalance={roundedBalance}
+        totalProfitLoss={totalProfitLoss}
+        setTotalProfitLoss={setTotalProfitLoss}
+        roundedInvestment={roundedInvestment}
+      />
 
       <FlatList
         data={inventory}
         style={{ marginTop: 5 }}
         keyExtractor={(item, index) => index}
         renderItem={({ item, index }) => (
-          <InventoryEntry item={item} key={index} totalProfitLoss={totalProfitLoss} setTotalProfitLoss={setTotalProfitLoss} />
+          <InventoryEntry
+            user={user}
+            item={item}
+            key={index}
+            inventory={inventory}
+            totalProfitLoss={totalProfitLoss}
+            setTotalProfitLoss={setTotalProfitLoss}
+          />
         )}
       />
-      
-      <Logout logout={logout}/>
 
-      
-
+      <Logout logout={logout} />
     </View>
-    
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: AppStyles.theme_1.DARK },
-
 });

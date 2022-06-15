@@ -10,10 +10,10 @@ const ProfileHeader = ({ username, roundedBalance, roundedInvestment, totalProfi
   return (
     <>
       <View style={{ flexDirection: "row" }}>
-        <View style={styles.rowItemOrange}>
+        <View style={styles.rowItemWhite}>
           <Text
             style={{
-              color: AppStyles.theme_1.WHITE,
+              color: 'black',
               fontSize: 25,
             }}
           >
@@ -24,12 +24,12 @@ const ProfileHeader = ({ username, roundedBalance, roundedInvestment, totalProfi
             name="user-secret"
             size={52}
             style={{ marginVertical: 5 }}
-            color={AppStyles.theme_1.WHITE}
+            color='black'
           />
-          <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 15 }}>
+          <Text style={{ color:'black', fontSize: 15 }}>
             Balance:
           </Text>
-          <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 20 }}>
+          <Text style={{ color: 'black', fontSize: 20 }}>
             ${roundedBalance}
           </Text>
         </View>
@@ -37,27 +37,27 @@ const ProfileHeader = ({ username, roundedBalance, roundedInvestment, totalProfi
         <View style={styles.rowItemWhite}>
           <Text style={{ fontSize: 22, color: "black" }}>Investment</Text>
           <MaterialIcons name="money" size={65} color="black" />
-          <Text style={{ color: AppStyles.theme_1.DARK, fontSize: 15 }}>
+          <Text style={{ color: 'black', fontSize: 15 }}>
             Invested:
           </Text>
-          <Text style={{ color: AppStyles.theme_1.DARK, fontSize: 20 }}>
+          <Text style={{ color: 'black', fontSize: 20 }}>
             ${roundedInvestment}
           </Text>
         </View>
 
 
-        <View style={{backgroundColor: totalProfitLoss > 0 ? AppStyles.theme_1.DARKGREEN: 'darkred',padding:15,alignItems:'center',width:'33.3%'}}>
+        <View style={{backgroundColor: totalProfitLoss >= 0 ? 'green': 'darkred',padding:15,alignItems:'center',width:'33.3%'}}>
           <Text
             style={{
               color: AppStyles.theme_1.WHITE,
-              fontSize: 22,
+              fontSize: 18,
             }}
           >
             Performance
           </Text>
 
           <FontAwesome
-            name="user-secret"
+            name="bar-chart"
             size={52}
             style={{ marginVertical: 5 }}
             color={AppStyles.theme_1.WHITE}
@@ -89,7 +89,9 @@ const styles = StyleSheet.create({
   },
   rowItemDark: {
     padding: 15,
-
+    backgroundColor: AppStyles.theme_1.DARK2,
+    alignItems: "center",
+    width: "33.3%",
    
   },
 })

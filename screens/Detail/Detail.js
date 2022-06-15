@@ -37,31 +37,9 @@ const Detail = ({ item, Buy,modalVisible,setModalVisible }) => {
         Market Cap: {market_cap_usd}
       </Text>
 
-      {/* <TouchableOpacity
-        style={{
-          width: 300,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: AppStyles.theme_1.ORANGE,
-          paddingVertical: 25,
-        }}
-        onPress={() => Buy(item)}
-      >
-        <Text style={{ color: "white", fontSize: 20 }}>Buy</Text>
-      </TouchableOpacity> */}
       
       <BuyModal modalVisible={modalVisible} setModalVisible={setModalVisible} item={item} Buy={Buy} />
-      {/* <TouchableOpacity
-        style={{
-          width: 300,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "darkred",
-          paddingVertical: 25,
-        }}
-      >
-        <Text style={{ color: "white", fontSize: 20 }}>Sell</Text>
-      </TouchableOpacity> */}
+
     </View>
   );
 };

@@ -8,7 +8,7 @@ import { Alert } from "react-native";
 const DetailContainer = ({ navigation, route }) => {
   const { item } = route.params;
   const { user } = useContext(AuthContext);
-  const [modalVisible,setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
 
   let details = {
     Name: item.name,
@@ -21,7 +21,7 @@ const DetailContainer = ({ navigation, route }) => {
     "Market Cap USA": item.market_cap_usd,
   };
 
-  async function Buy(item,quantity) {
+  async function Buy(item, quantity) {
     const priceCoin = parseFloat(item.price_usd);
     const userRef = doc(db, "users", user.uid);
     try {
@@ -74,7 +74,6 @@ const DetailContainer = ({ navigation, route }) => {
       console.error(e);
     }
   }
-
   return (
     <Detail
       navigation={navigation}

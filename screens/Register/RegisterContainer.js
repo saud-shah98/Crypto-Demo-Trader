@@ -6,22 +6,19 @@ const RegisterContainer = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [dob, setDob] = useState(new Date());
   const [difficulty, setDifficulty] = useState("Casual");
 
   const { register } = useContext(AuthContext);
 
   return (
     <Register
+      register={register}
       email={email}
       setEmail={setEmail}
       password={password}
       setPassword={setPassword}
       username={username}
       setUsername={setUsername}
-      register={register}
-      dob={dob}
-      setDob={setDob}
       difficulty={difficulty}
       setDifficulty={setDifficulty}
     />

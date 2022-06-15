@@ -1,12 +1,9 @@
-import { View, Text } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import Profile from "./Profile";
 import { AuthContext } from "../../navigation/AuthProvider";
 import { db } from "../../firebase";
 import {
   doc,
-  getDoc,
-  getDocs,
   onSnapshot,
   collection,
   query,
@@ -18,39 +15,46 @@ export default function ProfileContainer({ navigation }) {
   const [username, setUsername] = useState("");
   const [inventory, setInventory] = useState([]);
   const [totalInvested, setTotalInvested] = useState(null);
-  const [totalProfitLoss,setTotalProfitLoss] = useState(0.00);
-  
-
+  const [totalProfitLoss, setTotalProfitLoss] = useState(0.0);
 
   useEffect(() => {
     const initialize = async () => {
+      // Set User Balance and Username -- Top Level Users Collection
       const docRef = onSnapshot(doc(db, "users", user.uid), (person) => {
-        console.log("Current data: ", person.data().balance);
         setBalance(person.data().balance);
         setUsername(person.data().username);
       });
 
-      const querySnapshot = await getDocs(
-        query(collection(db, `users/${user.uid}/inventory`))
-      );
-      const newData = [];
+      // Set User Inventory -- Inventory Sub Collection
       let invested = 0;
-      querySnapshot.forEach((queryDocumentSnapshot) => {
-        let { coinName, quantity, bought_price, id} = queryDocumentSnapshot.data();
-        invested += (quantity * bought_price)
-        newData.push({ coinName, quantity, bought_price,id });
-      });
-      setInventory(newData);
-      setTotalInvested(invested)
+      const q =  query(collection(db, `users/${user.uid}/inventory`))
+      const unsub = onSnapshot(q,(querySnapshot) => {
+        const inventory = []
+        querySnapshot.forEach((docItem)=>{
+          let {
+            coinName,
+            quantity,
+            bought_price,
+            id,
+          } = docItem.data();
+          invested += quantity * bought_price;
+          inventory.push({id,coinName,bought_price,quantity})
+        })
+        setTotalInvested(invested);
+        setInventory(inventory);
+      })
+
+      
     };
 
     initialize();
-  }, [user, totalProfitLoss]);
+  }, [user, balance]);
 
   return (
     <Profile
       navigation={navigation}
       username={username}
+      user={user}
       logout={logout}
       balance={balance}
       inventory={inventory}
