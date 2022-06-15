@@ -1,62 +1,28 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, Pressable, Text, View } from "react-native";
+import HomeHeader from "../../components/HomeHeader";
 import List from "../../components/List";
 import SearchBar from "../../components/SearchBar";
 import AppStyles from "../../AppStyles";
-import { SimpleLineIcons } from "@expo/vector-icons";
 
 const Home = ({
   coinData,
+  balance,
   searchPhrase,
   setSearchPhrase,
   clicked,
   setClicked,
-  logout,
   navigation,
-  user,
-  balance,
 }) => {
-  function BalanceHeader() {
-    const roundedBalance = parseFloat(balance).toFixed(2);
-    if (!balance) return 
-    return (
-      <View style={{ alignItems: "center" }}>
-        <Text style={{ fontSize: 15, color: "white", marginTop: 5 }}>
-          Balance
-        </Text>
-        <Text style={{ fontSize: 15, color: "white" }}>${roundedBalance}</Text>
-      </View>
-    );
-  }
-
   return (
     <SafeAreaView style={styles.root} edges={["top,left,right,bottom"]}>
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-around",
-          paddingTop: 15,
-        }}
-      >
-        <SimpleLineIcons
-          name="user"
-          color="white"
-          size={30}
-          onPress={() => navigation.navigate("Profile")}
-        />
-
-        
-
-        {balance != null ? <BalanceHeader /> : <></>}
-      </View>
+      <HomeHeader balance={balance} navigation={navigation} />
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
         clicked={clicked}
         setClicked={setClicked}
       />
-
       <List
         searchPhrase={searchPhrase}
         data={coinData}

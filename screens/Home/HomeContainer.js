@@ -10,13 +10,12 @@ const options = {
     Accept: "application/json",
   },
 };
-
 const HomeContainer = ({ navigation }) => {
   const [coinData, setCoinData] = useState([]);
   const [balance, setBalance] = useState(null);
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const signalController = new AbortController();
@@ -35,7 +34,6 @@ const HomeContainer = ({ navigation }) => {
 
     const getBalance = async () => {
       const docRef = onSnapshot(doc(db, "users", user.uid), (doc) => {
-        console.log("Current data: ", doc.data().balance);
         setBalance(doc.data().balance);
       });
     };
@@ -54,16 +52,14 @@ const HomeContainer = ({ navigation }) => {
 
   return (
     <Home
-      user={user}
-      logout={logout}
       navigation={navigation}
+      coinData={coinData}
+      setCoinData={setCoinData}
+      balance={balance}
       clicked={clicked}
       setClicked={setClicked}
       searchPhrase={searchPhrase}
       setSearchPhrase={setSearchPhrase}
-      coinData={coinData}
-      setCoinData={setCoinData}
-      balance={balance}
     />
   );
 };

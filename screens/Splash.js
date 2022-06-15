@@ -1,16 +1,13 @@
 import React from "react-native";
 import {
-  View,
-  Text,
+
   StyleSheet,
-  Pressable,
   SafeAreaView,
   Image,
 } from "react-native";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import ButtonBox from "../components/ButtonBox";
-import AppStyles from "../AppStyles";
 
 export default function Splash({ navigation }) {
   return (

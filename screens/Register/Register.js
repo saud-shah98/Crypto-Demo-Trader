@@ -1,18 +1,8 @@
-import {
-  StyleSheet,
-  Text,
-  Pressable,
-  KeyboardAvoidingView,
-  Platform,
-  View,
-} from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import { StyleSheet, Text, KeyboardAvoidingView, Platform } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import InputField from "../../components/InputField";
-import Date from "../../components/Date";
 import Button from "../../components/Button";
 import AppStyles from "../../AppStyles";
-import Logo from "../../components/Logo";
 
 const Register = ({
   register,
@@ -22,10 +12,6 @@ const Register = ({
   setPassword,
   username,
   setUsername,
-  dob,
-  setDob,
-  difficulty,
-  setDifficulty,
 }) => {
   return (
     <KeyboardAvoidingView
@@ -50,11 +36,10 @@ const Register = ({
         />
         <Picker.Item
           color={AppStyles.theme_1.WHITE}
-          label="Ironman: $500"
+          label="Expert: $500"
           value="ironman"
         />
       </Picker>
-
 
       <InputField title="User ID" setField={setUsername} />
       <InputField title="Email" setField={setEmail} />
@@ -64,12 +49,7 @@ const Register = ({
         title="Register"
         action={() => register(email, password, username, difficulty)}
       />
-
-     
-                <Button title="Register" action={() => register(email,password,username, difficulty)} />
-
-    
-
+ 
     </KeyboardAvoidingView>
   );
 };
