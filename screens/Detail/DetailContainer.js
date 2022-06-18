@@ -1,14 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import Detail from "./Detail";
 import { doc, runTransaction, increment } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../../navigation/AuthProvider";
 import { Alert } from "react-native";
+import { BalanceContext } from "../../navigation/BalanceProvider";
+import { CoinsOwnedContext } from "../../navigation/CoinsOwnedProvider";
 
 const DetailContainer = ({ navigation, route }) => {
-  const { item } = route.params;
   const { user } = useContext(AuthContext);
+  const { balance,getBalance } = useContext(BalanceContext);
+  const {numCoinsOwned,getNumCoinsOwned} = useContext(CoinsOwnedContext);
   const [modalVisible, setModalVisible] = useState(false);
+  
+  useEffect(()=>{
+    getBalance(user).then(()=>console.log('hello'))
+    getNumCoinsOwned(user,details.Name).then(()=> console.log('Loaded quantity'))
+  },[balance,numCoinsOwned])
+
+  
+  const { item } = route.params;
 
   let details = {
     Name: item.name,
@@ -74,15 +85,17 @@ const DetailContainer = ({ navigation, route }) => {
       console.error(e);
     }
   }
+  
   return (
     <Detail
       navigation={navigation}
-      route={route}
       item={item}
       details={details}
       Buy={Buy}
       modalVisible={modalVisible}
       setModalVisible={setModalVisible}
+      balance={balance}
+      numCoinsOwned={numCoinsOwned}
     />
   );
 };

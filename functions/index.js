@@ -40,5 +40,13 @@ exports.setInitialBalance = functions.auth.user().onCreate(async (user) => {
 
 });
 
+exports.buyOrder = functions.firestore.document('users/{userId}/inventory/{coinName}').onWrite((snap,context)=>{
+  const prev = snap.before.data()
+  const next = snap.after.data()
+  const pendingOrdersRef = db.collection(`orders/${context.params.userId}/pendingOrders`).doc(prev.coinName)
+  pendingOrdersRef.set({prev,next},{merge:true})
+  
+})
+
 
 

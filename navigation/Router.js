@@ -5,7 +5,6 @@ import { AuthContext } from "./AuthProvider";
 import AppStack from "./Stacks/AppStack";
 import AuthStack from "./Stacks/AuthStack";
 import { auth, db } from "../firebase";
-import { Text } from "react-native";
 
 const Router = () => {
   const { user, setUser } = useContext(AuthContext);

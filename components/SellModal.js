@@ -13,6 +13,7 @@ import AppStyles from "../AppStyles";
 import Button from "../components/Button";
 import { AntDesign } from "@expo/vector-icons";
 
+
 const SellModal = ({
   modalVisible,
   setModalVisible,
@@ -50,15 +51,22 @@ const SellModal = ({
             backgroundColor: AppStyles.theme_1.DARK2,
           }}
         >
-          <Text style={{ fontSize: 45, color: "white" }}>{name}</Text>
+           <AntDesign
+            name="leftcircle"
+            size={45}
+            color="white"
+            style={{ alignSelf: "'flex-start'" }}
+            onPress={() => setModalVisible(false)}
+          />
+          <Text style={{ fontSize: 45, color: "white" }}>{item.coinName}</Text>
           <Text style={{ fontSize: 34, color: "white" }}>
             Amount owned: {parseFloat(amountOwned).toFixed(2)}
           </Text>
           <Text style={{ fontSize: 34, color: "white" }}>
             You bought at: ${item.bought_price}
           </Text>
-          <Text style={{ fontSize: 34, color: "white" }}>
-            Current Market Price: ${current_price_usd}
+          <Text style={{ fontSize: 34, color: "white",marginTop:25 }}>
+            Current Price: ${current_price_usd}
           </Text>
          
 
