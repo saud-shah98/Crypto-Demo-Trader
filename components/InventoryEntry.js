@@ -46,7 +46,7 @@ const InventoryEntry = ({
       setTotalProfitLoss((prev) => prev + changeRounded);
     };
 
-    (item.quantity > 0) ? getProfitLoss() : <></>
+    item.quantity > 0 ? getProfitLoss() : <></>;
   }, []);
 
   async function Sell(item, shares) {
@@ -70,18 +70,17 @@ const InventoryEntry = ({
           throw "Document does not exist";
         }
 
-        console.log(inventoryDoc.data())
+        console.log(inventoryDoc.data());
 
         const newBalance =
           parseFloat(userDoc.data().balance) + current_price_usd * shares;
 
         transaction.update(inventoryRef, {
-          quantity: increment(parseFloat(-shares).toFixed(2))
+          quantity: increment(parseFloat(-shares).toFixed(2)),
         });
         transaction.update(userRef, {
-          balance: shares > 0 ? newBalance: balance,
+          balance: shares > 0 ? newBalance : balance,
         });
-
 
         return newBalance;
       });
@@ -113,19 +112,20 @@ const InventoryEntry = ({
         </Text>
       </View>
 
-      {/* <View style={styles.columns}>
-        <Text style={styles.labels}>Quantity</Text>
-        <Text
-          style={{
-           fontSize:15,
-            color: AppStyles.theme_1.DARK,
-          }}
-        >
-          {item.quantity}
-        </Text>
-      </View> */}
 
-      {/* <View style={styles.columns}>
+      <View style={styles.columns}>
+         <Text style={styles.labels}>Quantity</Text>
+         <Text
+           style={{
+             fontSize: 15,
+             color: AppStyles.theme_1.WHITE,
+          }}
+         >
+           {item.quantity}
+         </Text>
+      </View>
+    
+          {/* /*  <View style={styles.columns}>
         <Text style={styles.labels}>Bought Price</Text>
         <View style={styles.priceColumn}>
           <Foundation
@@ -143,26 +143,27 @@ const InventoryEntry = ({
             {item.bought_price}
           </Text>
         </View>
-      </View> */}
-
+          </View> */ }
+      
       <View style={styles.columns}>
-        <Text style={styles.labels}>Current Price</Text>
+        <Text style={styles.labels}>Price</Text>
         <Text style={styles.rowShortText}>
           ${parseFloat(current_price_usd).toFixed(2)}
         </Text>
       </View>
-
-      {/* <View style={styles.columns}>
+  
+      <View style={styles.columns}>
         <Text style={styles.labels}>Invested</Text>
         <Text style={styles.rowShortText}>
           ${parseFloat(item.quantity * item.bought_price).toFixed(2)}
         </Text>
-      </View> */}
+      </View>
 
       <View style={styles.columns}>
         <Text style={styles.labels}>Gain/Loss</Text>
         <Text style={styles.rowShortText}>{profitLoss}</Text>
       </View>
+
 
       <SellModal
         modalVisible={modalVisible}
