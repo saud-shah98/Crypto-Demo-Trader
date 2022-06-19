@@ -23,7 +23,9 @@ const BuyModal = ({
 }) => {
   const [quantity, setQuantity] = useState(0);
 
-  useEffect(() => {}, [quantity]);
+  useEffect(() => {
+    console.log(item)
+  }, [quantity]);
 
   return (
     <View>
@@ -59,6 +61,21 @@ const BuyModal = ({
             ${parseFloat(item.price_usd * quantity).toFixed(2)}
           </Text>
 
+          <View style={{ alignItems: "center" }}>
+        <Text style={{ fontSize: 16, color: "white" }}>
+          1hr Change: {item.percent_change_1h}%
+        </Text>
+        <Text style={{ fontSize: 16, color: "white" }}>
+          24hr Change: {item.percent_change_24h}%
+        </Text>
+        <Text style={{ fontSize: 16, color: "white" }}>
+          7 day Change: {item.percent_change_7d}%
+        </Text>
+        <Text style={{ fontSize: 16, color: "white" }}>
+          Market Cap: {item.market_cap_usd}
+        </Text>
+      </View>
+
           <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 16 }}>
             Available Balance: ${balance}
           </Text>
@@ -89,11 +106,7 @@ const BuyModal = ({
           />
         </View>
       </Modal>
-      <Button
-        title="Buy"
-        action={() => setModalVisible(true)}
-        color={AppStyles.theme_1.DARK2}
-      />
+      <AntDesign name="rightcircleo" size={29} color="white" onPress={()=>setModalVisible(!modalVisible)} />
     </View>
   );
 };
