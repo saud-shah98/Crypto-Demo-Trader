@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TextInput,
   Platform,
+  KeyboardAvoidingView
 } from "react-native";
 import AppStyles from "../AppStyles";
 import Button from "../components/Button";
@@ -38,13 +39,15 @@ const BuyModal = ({
           setModalVisible(!modalVisible);
         }}
       >
-        <View
+        <KeyboardAvoidingView
           style={{
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: AppStyles.theme_1.DARK2,
+            
           }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <AntDesign
             name="leftcircle"
@@ -74,7 +77,7 @@ const BuyModal = ({
         <Text style={{ fontSize: 16, color: "white" }}>
           Market Cap: {item.market_cap_usd}
         </Text>
-      </View>
+     
 
           <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 16 }}>
             Available Balance: ${balance}
@@ -83,9 +86,12 @@ const BuyModal = ({
             You currently own: {numCoinsOwned}
           </Text>
 
+          </View>
+
           <TextInput
             onChangeText={(item) => setQuantity(item)}
             placeholder="Enter Quantity"
+            keyboardType="number-pad"
             style={{
               padding: 10,
               fontSize: 32,
@@ -104,7 +110,7 @@ const BuyModal = ({
             }}
             title="Buy"
           />
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
       <AntDesign name="rightcircleo" size={29} color="white" onPress={()=>setModalVisible(!modalVisible)} />
     </View>

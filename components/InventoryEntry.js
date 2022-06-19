@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import SellModal from "../components/SellModal";
 import { doc, runTransaction, increment } from "firebase/firestore";
 import { db } from "../firebase";
-import { Foundation } from "@expo/vector-icons";
 import AppStyles from "../AppStyles";
 
 const options = {
@@ -47,7 +46,7 @@ const InventoryEntry = ({
     };
 
     item.quantity > 0 ? getProfitLoss() : <></>;
-  }, []);
+  }, [profitLoss]);
 
   async function Sell(item, shares) {
     if (shares < 0 || shares > item.quantity) return
