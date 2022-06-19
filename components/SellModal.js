@@ -79,6 +79,7 @@ const SellModal = ({
           <TextInput
             onChangeText={setQuantity}
             placeholder="Enter Quantity"
+            keyboardType="number-pad"
             style={{
               padding: 10,
               fontSize: 32,
