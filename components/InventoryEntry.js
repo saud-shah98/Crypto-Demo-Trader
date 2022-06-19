@@ -45,8 +45,8 @@ const InventoryEntry = ({
       setTotalProfitLoss((prev) => prev + changeRounded);
     };
 
-    item.quantity > 0 ? getProfitLoss() : <></>;
-  }, [profitLoss]);
+    getProfitLoss()
+  }, [current_price_usd,profitLoss]);
 
   async function Sell(item, shares) {
     if (shares < 0 || shares > item.quantity) return
@@ -121,7 +121,7 @@ const InventoryEntry = ({
              color: AppStyles.theme_1.WHITE,
           }}
          >
-           {item.quantity}
+           {parseFloat(item.quantity).toFixed(2)}
          </Text>
       </View>
     
@@ -147,9 +147,8 @@ const InventoryEntry = ({
       
       <View style={styles.columns}>
         <Text style={styles.labels}>Price</Text>
-        <Text style={styles.rowShortText}>
-          ${parseFloat(current_price_usd).toFixed(2)}
-        </Text>
+        
+          {current_price_usd != null ?  <Text style={styles.rowShortText}>${parseFloat(current_price_usd).toFixed(2)}</Text>: <Text style={styles.rowShortText}>Loading</Text>}
       </View>
   
       <View style={styles.columns}>
@@ -161,7 +160,7 @@ const InventoryEntry = ({
 
       <View style={styles.columns}>
         <Text style={styles.labels}>Gain/Loss</Text>
-        <Text style={styles.rowShortText}>{profitLoss}</Text>
+        {profitLoss != null ?  <Text style={styles.rowShortText}>${parseFloat(profitLoss).toFixed(2)}</Text>: <Text style={styles.rowShortText}>Loading</Text>}
       </View>
 
 
