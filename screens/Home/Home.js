@@ -26,6 +26,7 @@ const Home = ({
       <List
         searchPhrase={searchPhrase}
         data={coinData}
+        balance={balance}
         navigation={navigation}
       />
     </SafeAreaView>

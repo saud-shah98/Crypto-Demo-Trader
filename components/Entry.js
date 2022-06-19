@@ -1,9 +1,80 @@
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Alert} from "react-native";
+import React, {useState,useEffect,useContext} from 'react';
+import BuyModal from './BuyModal';
 import { Foundation } from "@expo/vector-icons";
 import AppStyles from "../AppStyles";
-import { AntDesign } from "@expo/vector-icons";
+import { CoinsOwnedContext } from "../navigation/CoinsOwnedProvider";
+import { AuthContext } from "../navigation/AuthProvider";
 
-const Entry = ({ item, navigation }) => {
+
+import { doc, runTransaction, increment } from "firebase/firestore";
+import { db } from "../firebase";
+
+const Entry = ({ item,balance }) => {
+  const {user} = useContext(AuthContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const {numCoinsOwned,getNumCoinsOwned} = useContext(CoinsOwnedContext);
+
+  useEffect(()=>{
+    getNumCoinsOwned(user,item.name).then(()=> console.log('Num coins retrieved'))
+  },[])
+
+  async function Buy(item, quantity) {
+    const priceCoin = parseFloat(item.price_usd);
+    const userRef = doc(db, "users", user.uid);
+    try {
+      const buyCoin = await runTransaction(db, async (transaction) => {
+        const userDoc = await transaction.get(userRef);
+        if (!userDoc.exists()) {
+          throw "Document does not exist!";
+        }
+
+        const newBalance =
+          parseFloat(userDoc.data().balance) - priceCoin * quantity;
+
+        if (newBalance > 0) {
+          transaction.update(userRef, {
+            balance: newBalance,
+          });
+          const inventoryRef = doc(
+            db,
+            "users",
+            user.uid,
+            "inventory",
+            item.name
+          );
+
+          transaction.set(
+            inventoryRef,
+            {
+              id: item.id,
+              coinName: item.name,
+              bought_price: item.price_usd,
+            },
+            { merge: true }
+          );
+
+          transaction.update(inventoryRef, {
+            quantity: increment(quantity),
+          });
+
+          console.log("Updated");
+          Alert.alert(`Bought ${quantity}x ${item.name}`);
+          return newBalance;
+        } else {
+          return Promise.reject("Sorry! Population is too big");
+        }
+      });
+
+      console.log("Balance decreased to ", buyCoin);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  }
+  
+
+
   return (
     <View style={styles.row}>
       <View style={styles.columns}>
@@ -33,11 +104,12 @@ const Entry = ({ item, navigation }) => {
         <Text style={styles.labels}>Rank</Text>
         <Text style={styles.rowShortText}>{item.rank}</Text>
       </View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => navigation.navigate("Detail", { item: item })}
       >
         <AntDesign name="rightcircleo" size={29} color="white" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <BuyModal Buy={Buy} balance={parseFloat(balance).toFixed(2)} numCoinsOwned={parseFloat(numCoinsOwned).toFixed(2)} modalVisible={modalVisible} setModalVisible={setModalVisible} item={item}/>
     </View>
   );
 };

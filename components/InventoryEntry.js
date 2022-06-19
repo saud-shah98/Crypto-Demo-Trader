@@ -50,6 +50,7 @@ const InventoryEntry = ({
   }, []);
 
   async function Sell(item, shares) {
+    if (shares < 0 || shares > item.quantity) return
     try {
       const userRef = doc(db, "users", user.uid);
 
@@ -76,7 +77,7 @@ const InventoryEntry = ({
           parseFloat(userDoc.data().balance) + current_price_usd * shares;
 
         transaction.update(inventoryRef, {
-          quantity: increment(parseFloat(-shares).toFixed(2)),
+          quantity: shares > 0 ? increment(parseFloat(-shares).toFixed(2)): quantity,
         });
         transaction.update(userRef, {
           balance: shares > 0 ? newBalance : balance,

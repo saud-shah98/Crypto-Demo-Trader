@@ -3,7 +3,6 @@ import { AuthContext } from "../../navigation/AuthProvider";
 import Home from "./Home";
 import { db } from "../../firebase";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
-
 const options = {
   method: "GET",
   headers: {
@@ -16,6 +15,7 @@ const HomeContainer = ({ navigation }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const { user } = useContext(AuthContext);
+
 
   useEffect(() => {
     const signalController = new AbortController();

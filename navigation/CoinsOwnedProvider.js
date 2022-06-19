@@ -11,8 +11,8 @@ export const CoinsOwnedProvider = ({children}) =>{
             try{
                 const getNumCoinsOwned = async() => {
                     const docRef = onSnapshot(doc(db,"users",user.uid,"inventory",coinName), (doc)=>{
-                        console.log(doc.data())
-                        setNumCoinsOwned(doc.data().quantity);
+                        
+                        doc.exists() ? setNumCoinsOwned(doc.data().quantity): setNumCoinsOwned(0)
                     })
                 }
                 getNumCoinsOwned(user,coinName)

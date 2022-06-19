@@ -2,10 +2,10 @@ import React from "react";
 import { FlatList, View, Text } from "react-native";
 import Entry from "./Entry";
 
-const List = ({ data, navigation, searchPhrase }) => {
+const List = ({ data, navigation, searchPhrase,balance }) => {
   const renderItem = ({ item }) => {
     if (searchPhrase === "") {
-      return <Entry item={item} navigation={navigation} />;
+      return <Entry item={item} balance={balance} navigation={navigation} />;
     }
 
     if (
