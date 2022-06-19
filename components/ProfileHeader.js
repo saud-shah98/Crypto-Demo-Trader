@@ -29,13 +29,13 @@ const ProfileHeader = ({ username, roundedBalance, roundedInvestment, totalProfi
           <Text style={{ color:'black', fontSize: 15 }}>
             Balance:
           </Text>
-          <Text style={{ color: 'black', fontSize: 20 }}>
+          <Text style={{ color: 'black', fontSize: 16 }}>
             ${roundedBalance}
           </Text>
         </View>
 
         <View style={styles.rowItemWhite}>
-          <Text style={{ fontSize: 22, color: "black" }}>Investment</Text>
+          <Text style={{ fontSize: 20, color: "black" }}>Investment</Text>
           <MaterialIcons name="money" size={65} color="black" />
           <Text style={{ color: 'black', fontSize: 15 }}>
             Invested:

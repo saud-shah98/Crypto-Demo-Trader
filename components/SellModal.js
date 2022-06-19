@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TextInput,
   Platform,
+  KeyboardAvoidingView
 } from "react-native";
 import AppStyles from "../AppStyles";
 import Button from "../components/Button";
@@ -43,13 +44,14 @@ const SellModal = ({
           setModalVisible(!modalVisible);
         }}
       >
-        <View
+        <KeyboardAvoidingView
           style={{
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: AppStyles.theme_1.DARK2,
           }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
            <AntDesign
             name="leftcircle"
@@ -77,6 +79,7 @@ const SellModal = ({
           <TextInput
             onChangeText={setQuantity}
             placeholder="Enter Quantity"
+            keyboardType="number-pad"
             style={{
               padding: 10,
               fontSize: 32,
@@ -97,7 +100,7 @@ const SellModal = ({
             }}
             title="Sell"
           />
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
       <Pressable
         onPress={() => {
