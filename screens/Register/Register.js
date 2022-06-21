@@ -12,6 +12,7 @@ const Register = ({
   setPassword,
   username,
   setUsername,
+  difficulty
 }) => {
   return (
     <KeyboardAvoidingView
