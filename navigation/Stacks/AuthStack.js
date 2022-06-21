@@ -10,7 +10,7 @@ const AppStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Splash"
+        name="Lotello"
         component={Splash}
         options={{ headerShown: false }}
       />
