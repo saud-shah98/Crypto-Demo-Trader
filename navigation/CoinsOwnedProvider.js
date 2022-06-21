@@ -16,6 +16,7 @@ export const CoinsOwnedProvider = ({children}) =>{
                     })
                 }
                 getNumCoinsOwned(user,coinName)
+                
             }
             catch(e){
                 console.log(e)

@@ -1,52 +1,49 @@
-import { View, StyleSheet, Text, Pressable, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
 import React, { useEffect, useState } from "react";
 import SellModal from "../components/SellModal";
 import { doc, runTransaction, increment } from "firebase/firestore";
 import { db } from "../firebase";
 import AppStyles from "../AppStyles";
 
-const options = {
-  method: "GET",
-  headers: {
-    Accept: "application/json",
-  },
-};
 
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 const InventoryEntry = ({
   item,
-  navigation,
-  totalProfitLoss,
-  setTotalProfitLoss,
   user,
   inventory,
+  setTotalProfitLoss
 }) => {
-  const [current_price_usd, setCurrentPriceUSD] = useState();
-  const [profitLoss, setProfitLoss] = useState();
   const [modalVisible, setModalVisible] = useState(false);
+  const [profitLoss,setProfitLoss] = useState();
+  const [current_price_usd,setCurrentPriceUSD] = useState();
 
   useEffect(() => {
-    const getProfitLoss = async () => {
-      const response = await fetch(
-        `https://api.coinlore.net/api/ticker/?id=${item.id}`,
-        options
-      );
-      const result = await response.json();
-      setCurrentPriceUSD(result[0].price_usd);
-
-      let change =
-        parseFloat(result[0].price_usd).toFixed(2) -
-        parseFloat(item.bought_price).toFixed(2);
-      let changeRounded = parseFloat(change.toFixed(2));
-      let totalProfitLossRounded = parseFloat(totalProfitLoss).toFixed(2);
-      setProfitLoss(changeRounded);
-      setTotalProfitLoss((prev) => prev + changeRounded);
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
     };
+    
+    const getProfitLoss = async () =>{
+      const response = await fetch(
+          `https://api.coinlore.net/api/ticker/?id=${item.id}`,
+          options
+        );
+      const result = await response.json();
+      let change = (item.quantity * parseFloat(result[0].price_usd).toFixed(2)) - (item.quantity *  parseFloat(item.bought_price).toFixed(2));      
+      console.log(change)
+   
+      setProfitLoss(parseFloat(change).toFixed(2));
+      setCurrentPriceUSD(parseFloat(result[0].price_usd).toFixed(2));
+      setTotalProfitLoss(prev=> prev+change)
+  }
+  
+    
+  getProfitLoss()
 
-    getProfitLoss()
-  }, [current_price_usd,profitLoss]);
+  }, []);
 
   async function Sell(item, shares) {
     if (shares < 0 || shares > item.quantity) return
@@ -70,7 +67,6 @@ const InventoryEntry = ({
           throw "Document does not exist";
         }
 
-        console.log(inventoryDoc.data());
 
         const newBalance =
           parseFloat(userDoc.data().balance) + current_price_usd * shares;
