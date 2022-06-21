@@ -8,7 +8,7 @@ import {
   StyleSheet,
   TextInput,
   Platform,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 import AppStyles from "../AppStyles";
 import Button from "../components/Button";
@@ -25,7 +25,7 @@ const BuyModal = ({
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    console.log(item)
+    console.log(item);
   }, [quantity]);
 
   return (
@@ -45,7 +45,6 @@ const BuyModal = ({
             justifyContent: "space-evenly",
             alignItems: "center",
             backgroundColor: AppStyles.theme_1.DARK2,
-            
           }}
           behavior={Platform.OS === "ios" ? "padding" : "padding"}
         >
@@ -64,28 +63,32 @@ const BuyModal = ({
             ${parseFloat(item.price_usd * quantity).toFixed(2)}
           </Text>
 
-          <View style={{ alignItems: "center" }}>
-        <Text style={{ fontSize: 16, color: "white" }}>
-          1hr Change: {item.percent_change_1h}%
-        </Text>
-        <Text style={{ fontSize: 16, color: "white" }}>
-          24hr Change: {item.percent_change_24h}%
-        </Text>
-        <Text style={{ fontSize: 16, color: "white" }}>
-          7 day Change: {item.percent_change_7d}%
-        </Text>
-        <Text style={{ fontSize: 16, color: "white" }}>
-          Market Cap: {item.market_cap_usd}
-        </Text>
-     
+          <View
+            style={{
+              alignItems: "center",
+              height: 300,
+              justifyContent: "space-around",
+            }}
+          >
+            <Text style={{ fontSize: 24, color: "white" }}>
+              1hr Change: {item.percent_change_1h}%
+            </Text>
+            <Text style={{ fontSize: 24, color: "white" }}>
+              24hr Change: {item.percent_change_24h}%
+            </Text>
+            <Text style={{ fontSize: 24, color: "white" }}>
+              7 day Change: {item.percent_change_7d}%
+            </Text>
+            <Text style={{ fontSize: 24, color: "white" }}>
+              Market Cap: {item.market_cap_usd}
+            </Text>
 
-          <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 16 }}>
-            Available Balance: ${balance}
-          </Text>
-          <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 16 }}>
-            You currently own: {numCoinsOwned}
-          </Text>
-
+            <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 24 }}>
+              Available Balance: ${balance}
+            </Text>
+            <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 24 }}>
+              You currently own: {numCoinsOwned}
+            </Text>
           </View>
 
           <TextInput
@@ -112,8 +115,13 @@ const BuyModal = ({
           />
         </KeyboardAvoidingView>
       </Modal>
-      <AntDesign name="rightcircleo" size={29} color="white" onPress={()=>setModalVisible(!modalVisible)} />
-            </>
+      <AntDesign
+        name="rightcircleo"
+        size={29}
+        color="white"
+        onPress={() => setModalVisible(!modalVisible)}
+      />
+    </>
   );
 };
 

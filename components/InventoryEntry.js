@@ -5,18 +5,12 @@ import { doc, runTransaction, increment } from "firebase/firestore";
 import { db } from "../firebase";
 import AppStyles from "../AppStyles";
 
-
 const windowWidth = Dimensions.get("window").width;
 
-const InventoryEntry = ({
-  item,
-  user,
-  inventory,
-  setTotalProfitLoss
-}) => {
+const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [profitLoss,setProfitLoss] = useState();
-  const [current_price_usd,setCurrentPriceUSD] = useState();
+  const [profitLoss, setProfitLoss] = useState();
+  const [current_price_usd, setCurrentPriceUSD] = useState();
 
   useEffect(() => {
     const options = {
@@ -25,28 +19,28 @@ const InventoryEntry = ({
         Accept: "application/json",
       },
     };
-    
-    const getProfitLoss = async () =>{
+
+    const getProfitLoss = async () => {
       const response = await fetch(
-          `https://api.coinlore.net/api/ticker/?id=${item.id}`,
-          options
-        );
+        `https://api.coinlore.net/api/ticker/?id=${item.id}`,
+        options
+      );
       const result = await response.json();
-      let change = (item.quantity * parseFloat(result[0].price_usd).toFixed(2)) - (item.quantity *  parseFloat(item.bought_price).toFixed(2));      
-      console.log(change)
-   
+      let change =
+        item.quantity * parseFloat(result[0].price_usd).toFixed(2) -
+        item.quantity * parseFloat(item.bought_price).toFixed(2);
+      console.log(change);
+
       setProfitLoss(parseFloat(change).toFixed(2));
       setCurrentPriceUSD(parseFloat(result[0].price_usd).toFixed(2));
-      setTotalProfitLoss(prev=> prev+change)
-  }
-  
-    
-  getProfitLoss()
+      setTotalProfitLoss((prev) => prev + change);
+    };
 
+    getProfitLoss();
   }, []);
 
   async function Sell(item, shares) {
-    if (shares < 0 || shares > item.quantity) return
+    if (shares < 0 || shares > item.quantity) return;
     try {
       const userRef = doc(db, "users", user.uid);
 
@@ -67,12 +61,12 @@ const InventoryEntry = ({
           throw "Document does not exist";
         }
 
-
         const newBalance =
           parseFloat(userDoc.data().balance) + current_price_usd * shares;
 
         transaction.update(inventoryRef, {
-          quantity: shares > 0 ? increment(parseFloat(-shares).toFixed(2)): quantity,
+          quantity:
+            shares > 0 ? increment(parseFloat(-shares).toFixed(2)) : quantity,
         });
         transaction.update(userRef, {
           balance: shares > 0 ? newBalance : balance,
@@ -108,20 +102,19 @@ const InventoryEntry = ({
         </Text>
       </View>
 
-
       <View style={styles.columns}>
-         <Text style={styles.labels}>Quantity</Text>
-         <Text
-           style={{
-             fontSize: 15,
-             color: AppStyles.theme_1.WHITE,
+        <Text style={styles.labels}>Quantity</Text>
+        <Text
+          style={{
+            fontSize: 12,
+            color: AppStyles.theme_1.WHITE,
           }}
-         >
-           {parseFloat(item.quantity).toFixed(2)}
-         </Text>
+        >
+          {parseFloat(item.quantity).toFixed(2)}
+        </Text>
       </View>
-    
-          {/* /*  <View style={styles.columns}>
+
+      {/* /*  <View style={styles.columns}>
         <Text style={styles.labels}>Bought Price</Text>
         <View style={styles.priceColumn}>
           <Foundation
@@ -139,14 +132,20 @@ const InventoryEntry = ({
             {item.bought_price}
           </Text>
         </View>
-          </View> */ }
-      
+          </View> */}
+
       <View style={styles.columns}>
         <Text style={styles.labels}>Price</Text>
-        
-          {current_price_usd != null ?  <Text style={styles.rowShortText}>${parseFloat(current_price_usd).toFixed(2)}</Text>: <Text style={styles.rowShortText}>Loading</Text>}
+
+        {current_price_usd != null ? (
+          <Text style={styles.rowShortText}>
+            ${parseFloat(current_price_usd).toFixed(2)}
+          </Text>
+        ) : (
+          <Text style={styles.rowShortText}>Loading</Text>
+        )}
       </View>
-  
+
       <View style={styles.columns}>
         <Text style={styles.labels}>Invested</Text>
         <Text style={styles.rowShortText}>
@@ -156,9 +155,14 @@ const InventoryEntry = ({
 
       <View style={styles.columns}>
         <Text style={styles.labels}>Gain/Loss</Text>
-        {profitLoss != null ?  <Text style={styles.rowShortText}>${parseFloat(profitLoss).toFixed(2)}</Text>: <Text style={styles.rowShortText}>Loading</Text>}
+        {profitLoss != null ? (
+          <Text style={styles.rowShortText}>
+            ${parseFloat(profitLoss).toFixed(2)}
+          </Text>
+        ) : (
+          <Text style={styles.rowShortText}>Loading</Text>
+        )}
       </View>
-
 
       <SellModal
         modalVisible={modalVisible}
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: 80,
+    height: 65,
     marginVertical: 5,
     borderRadius: 10,
     width: windowWidth,
