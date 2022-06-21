@@ -2,8 +2,8 @@ import 'dotenv/config';
 
 export default{
   "expo": {
-    "name": "Lotello",
-    "slug": "Lotello",
+    "name": "lotello",
+    "slug": "lotello",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
