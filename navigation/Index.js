@@ -9,9 +9,7 @@ export default function Providers() {
   return (
     <AuthProvider>
       <BalanceProvider>
-        <CoinsOwnedProvider>
-          <Router />
-        </CoinsOwnedProvider>
+        <Router />
       </BalanceProvider>
     </AuthProvider>
   );
