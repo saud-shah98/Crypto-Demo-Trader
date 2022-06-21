@@ -29,7 +29,7 @@ const BuyModal = ({
   }, [quantity]);
 
   return (
-    <View>
+    <>
       <Modal
         animationType="slide"
         transparent={true}
@@ -42,12 +42,12 @@ const BuyModal = ({
         <KeyboardAvoidingView
           style={{
             flex: 1,
-            justifyContent: "center",
+            justifyContent: "space-evenly",
             alignItems: "center",
             backgroundColor: AppStyles.theme_1.DARK2,
             
           }}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          behavior={Platform.OS === "ios" ? "padding" : "padding"}
         >
           <AntDesign
             name="leftcircle"
@@ -113,7 +113,7 @@ const BuyModal = ({
         </KeyboardAvoidingView>
       </Modal>
       <AntDesign name="rightcircleo" size={29} color="white" onPress={()=>setModalVisible(!modalVisible)} />
-    </View>
+            </>
   );
 };
 

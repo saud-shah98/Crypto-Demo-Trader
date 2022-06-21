@@ -25,7 +25,6 @@ export default function Profile({
         username={username}
         roundedBalance={roundedBalance}
         totalProfitLoss={totalProfitLoss}
-        setTotalProfitLoss={setTotalProfitLoss}
         roundedInvestment={roundedInvestment}
       />
 
@@ -39,7 +38,6 @@ export default function Profile({
             item={item}
             key={index}
             inventory={inventory}
-            totalProfitLoss={totalProfitLoss}
             setTotalProfitLoss={setTotalProfitLoss}
           />
         )}

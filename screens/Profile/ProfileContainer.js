@@ -15,7 +15,7 @@ export default function ProfileContainer({ navigation }) {
   const [username, setUsername] = useState("");
   const [inventory, setInventory] = useState([]);
   const [totalInvested, setTotalInvested] = useState(null);
-  const [totalProfitLoss, setTotalProfitLoss] = useState(0.0);
+  const [totalProfitLoss, setTotalProfitLoss] = useState(0);
 
   useEffect(() => {
     const initialize = async () => {
