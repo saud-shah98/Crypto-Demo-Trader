@@ -16,7 +16,6 @@ const HomeContainer = ({ navigation }) => {
   const [clicked, setClicked] = useState(false);
   const { user } = useContext(AuthContext);
 
-
   useEffect(() => {
     const signalController = new AbortController();
 
@@ -37,6 +36,7 @@ const HomeContainer = ({ navigation }) => {
         setBalance(doc.data().balance);
       });
     };
+
     getCoins();
     getBalance();
     const interval = setInterval(() => {
