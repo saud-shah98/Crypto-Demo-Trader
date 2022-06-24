@@ -13,6 +13,8 @@ import {
 import AppStyles from "../AppStyles";
 import Button from "../components/Button";
 import { AntDesign } from "@expo/vector-icons";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../firebase";
 
 const BuyModal = ({
   modalVisible,
@@ -23,10 +25,6 @@ const BuyModal = ({
   numCoinsOwned,
 }) => {
   const [quantity, setQuantity] = useState(0);
-
-  useEffect(() => {
-    console.log(item);
-  }, [quantity]);
 
   return (
     <>
@@ -119,7 +117,10 @@ const BuyModal = ({
         name="rightcircleo"
         size={29}
         color="white"
-        onPress={() => setModalVisible(!modalVisible)}
+        onPress={() => {
+          setModalVisible(!modalVisible)
+          logEvent(analytics,"page_view",{'page_title':item.name})}}
+        
       />
     </>
   );

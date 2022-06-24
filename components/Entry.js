@@ -3,11 +3,12 @@ import React, { useState, useEffect, useContext } from "react";
 import BuyModal from "./BuyModal";
 import { Foundation } from "@expo/vector-icons";
 import AppStyles from "../AppStyles";
-import { CoinsOwnedContext } from "../navigation/CoinsOwnedProvider";
 import { AuthContext } from "../navigation/AuthProvider";
 
 import { doc, runTransaction, increment, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../firebase";
 
 const Entry = ({ item, balance }) => {
   const { user } = useContext(AuthContext);
@@ -65,8 +66,7 @@ const Entry = ({ item, balance }) => {
           transaction.update(inventoryRef, {
             quantity: increment(quantity),
           });
-
-          console.log("Updated");
+          logEvent(analytics,"add_to_cart",{balance:balance, 'coinName':item.name, 'bought_price':priceCoin,'quantity':quantity, 'total': quantity* priceCoin})
           Alert.alert(`Bought ${quantity}x ${item.name}`);
           return newBalance;
         } else {
