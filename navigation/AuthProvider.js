@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import {
   signInWithEmailAndPassword,
@@ -11,6 +11,7 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
 
   return (
     <AuthContext.Provider
@@ -39,6 +40,9 @@ export const AuthProvider = ({ children }) => {
                   },
                   { merge: true }
                 );
+
+               
+
               }
             );
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, View, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -38,7 +39,7 @@ const ProfileHeader = ({
 
         <View style={styles.rowItemDark}>
           <Text style={{ fontSize: 20, color: "white" }}>Investment</Text>
-          <MaterialIcons name="money" size={65} color="white" />
+          <MaterialIcons name="book" size={65} color="white" />
           <Text style={{ color: "white", fontSize: 15 }}>Invested:</Text>
           <Text style={{ color: "white", fontSize: 16 }}>
             ${roundedInvestment}
