@@ -37,10 +37,55 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
     };
 
     getProfitLoss();
-  }, []);
+  }, [inventory]);
 
   async function Sell(item, shares) {
     if (shares < 0 || shares > item.quantity) return;
+    console.log(item)
+    try {
+      const userRef = doc(db, "users", user.uid);
+
+      const sellCoin = await runTransaction(db, async (transaction) => {
+        const userDoc = await transaction.get(userRef);
+        if (!userDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        const inventoryRef = doc(
+          db,
+          "users",
+          user.uid,
+          "inventory",
+          item.coinName
+        );
+        const inventoryDoc = await transaction.get(inventoryRef);
+        if (!inventoryDoc.exists()) {
+          throw "Document does not exist";
+        }
+        const newBalance =
+          parseFloat(userDoc.data().balance) + current_price_usd * shares;
+        if (!newBalance || !current_price_usd) return
+
+        transaction.update(inventoryRef, {
+          quantity:
+            shares > 0 ? increment(parseFloat(-shares)) : quantity,
+        });
+        transaction.update(userRef, {
+          balance: shares > 0 ? newBalance : balance,
+        });
+
+        return newBalance;
+      });
+
+      console.log("Balance decreased to ", sellCoin);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  }
+
+  async function SellAll(item) {
+    if (item.quantity <= 0) return
+    console.log(item)
     try {
       const userRef = doc(db, "users", user.uid);
 
@@ -62,16 +107,14 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
         }
 
         const newBalance =
-          parseFloat(userDoc.data().balance) + current_price_usd * shares;
+          parseFloat(userDoc.data().balance) + current_price_usd * item.quantity;
 
         transaction.update(inventoryRef, {
-          quantity:
-            shares > 0 ? increment(parseFloat(-shares).toFixed(2)) : quantity,
+          quantity: 0
         });
         transaction.update(userRef, {
-          balance: shares > 0 ? newBalance : balance,
+          balance: newBalance
         });
-
         return newBalance;
       });
 
@@ -171,6 +214,7 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
         item={item}
         current_price_usd={current_price_usd}
         inventory={inventory}
+        SellAll={SellAll}
       />
     </View>
   );

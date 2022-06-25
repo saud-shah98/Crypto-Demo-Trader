@@ -14,6 +14,7 @@ export default function ProfileContainer({ navigation }) {
   const [balance, setBalance] = useState(null);
   const [username, setUsername] = useState("");
   const [inventory, setInventory] = useState([]);
+  const [invested, setInvested] = useState([]);
   const [totalInvested, setTotalInvested] = useState(null);
   const [totalProfitLoss, setTotalProfitLoss] = useState(0);
 
@@ -26,10 +27,11 @@ export default function ProfileContainer({ navigation }) {
       });
 
       // Set User Inventory -- Inventory Sub Collection
-      let invested = 0;
+     
       const q =  query(collection(db, `users/${user.uid}/inventory`))
       const unsub = onSnapshot(q,(querySnapshot) => {
         const inventory = []
+        let invested = 0
         querySnapshot.forEach((docItem)=>{
           let {
             coinName,
@@ -37,7 +39,7 @@ export default function ProfileContainer({ navigation }) {
             bought_price,
             id,
           } = docItem.data();
-          invested += quantity * bought_price;
+          invested+=quantity * bought_price;
           inventory.push({id,coinName,bought_price,quantity})
         })
         setTotalInvested(invested);
@@ -48,7 +50,7 @@ export default function ProfileContainer({ navigation }) {
     };
 
     initialize();
-  }, [user, balance]);
+  }, [user, balance,inventory]);
 
   return (
     <Profile
