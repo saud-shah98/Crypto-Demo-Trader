@@ -20,7 +20,6 @@ const SellModal = ({
   setModalVisible,
   current_price_usd,
   Sell,
-  SellAll,
   item,
   user,
   inventory,
@@ -63,7 +62,7 @@ const SellModal = ({
           />
           <Text style={{ fontSize: 45, color: "white" }}>{item.coinName}</Text>
           <Text style={{ fontSize: 34, color: "white" }}>
-            Amount owned: {amountOwned >= 1 ? parseFloat(amountOwned).toFixed(2): parseFloat(amountOwned).toFixed(6)}
+            Amount owned: {parseFloat(amountOwned).toFixed(2)}
           </Text>
           <Text style={{ fontSize: 34, color: "white" }}>
             You bought at: ${item.bought_price}
@@ -99,21 +98,12 @@ const SellModal = ({
               }
               setModalVisible(false);
             }}
-            title={`Sell ${quantity}`}
-          />
-           <Button
-            action={() => {
-              SellAll(item)
-              setModalVisible(false);
-            }}
-            title="Sell All"
-            color='DARK'
+            title="Sell"
           />
         </KeyboardAvoidingView>
       </Modal>
       <Pressable
         onPress={() => {
-          if (!current_price_usd) return
           setModalVisible(true);
           console.log(amountOwned);
         }}
