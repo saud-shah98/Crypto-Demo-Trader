@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet, Text, KeyboardAvoidingView, Platform } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import InputField from "../../components/InputField";
