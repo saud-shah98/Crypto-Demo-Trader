@@ -131,7 +131,7 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
     <View
       style={[
         styles.row,
-        { backgroundColor: profitLoss >= 0 ? "green" : "darkred" },
+        { backgroundColor: profitLoss > 0 ? "green" : "darkred" },
       ]}
     >
       <View style={styles.columns}>
@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
   labels: {
     color: AppStyles.theme_1.WHITE,
     fontSize: 12,
+    
   },
   priceColumn: {
     flexDirection: "row",

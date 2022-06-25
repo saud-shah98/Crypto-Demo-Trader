@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert,Dimensions } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 import BuyModal from "./BuyModal";
 import { Foundation } from "@expo/vector-icons";
@@ -9,11 +9,15 @@ import { doc, runTransaction, increment, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebase";
+const windowWidth = Dimensions.get("window").width;
 
 const Entry = ({ item, balance }) => {
   const { user } = useContext(AuthContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [numCoinsOwned, setNumCoinsOwned] = useState();
+  
+
+  
   useEffect(() => {
     const initialize = async () => {
       const unsub = onSnapshot(
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     height: 80,
     marginVertical: 5,
     borderRadius: 50,
-    width: "90%",
+    width: (windowWidth > 450) ? windowWidth/2: '90%',
     alignSelf: "center",
   },
   rowShortText: {
