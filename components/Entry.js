@@ -29,7 +29,6 @@ const Entry = ({ item, balance }) => {
   }, []);
 
   async function Buy(item, quantity) {
-    if (quantity <= 0) return
     const priceCoin = parseFloat(item.price_usd);
     const userRef = doc(db, "users", user.uid);
     try {
@@ -63,7 +62,7 @@ const Entry = ({ item, balance }) => {
             },
             { merge: true }
           );
-          
+
           transaction.update(inventoryRef, {
             quantity: increment(quantity),
           });
@@ -128,7 +127,7 @@ const Entry = ({ item, balance }) => {
       <BuyModal
         Buy={Buy}
         balance={parseFloat(balance).toFixed(2)}
-        numCoinsOwned={parseFloat(numCoinsOwned).toFixed(5)}
+        numCoinsOwned={parseFloat(numCoinsOwned).toFixed(2)}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         item={item}
