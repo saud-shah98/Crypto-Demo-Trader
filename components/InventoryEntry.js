@@ -20,6 +20,7 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
       },
     };
 
+
     const getProfitLoss = async () => {
       const response = await fetch(
         `https://api.coinlore.net/api/ticker/?id=${item.id}`,
@@ -37,7 +38,7 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
     };
 
     getProfitLoss();
-  }, [inventory]);
+  }, []);
 
   async function Sell(item, shares) {
     if (shares < 0 || shares > item.quantity) return;
