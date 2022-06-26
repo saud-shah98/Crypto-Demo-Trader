@@ -1,3 +1,4 @@
+import React from 'react';
 import { TextInput, Text, View } from "react-native";
 import AppStyles from "../AppStyles";
 const InputField = ({ title, setField,password }) => {

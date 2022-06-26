@@ -1,5 +1,6 @@
-import { View, FlatList, StyleSheet } from "react-native";
 import React from "react";
+import { View, FlatList, StyleSheet } from "react-native";
+
 import InventoryEntry from "../../components/InventoryEntry";
 import ProfileHeader from "../../components/ProfileHeader";
 import Logout from "../../components/Logout";
@@ -15,7 +16,7 @@ export default function Profile({
   totalInvested,
   totalProfitLoss,
   setTotalProfitLoss,
-
+  mounted,
 }) {
   const roundedBalance = parseFloat(balance).toFixed(2);
   const roundedInvestment = parseFloat(totalInvested).toFixed(2);
@@ -38,6 +39,7 @@ export default function Profile({
             item={item}
             key={index}
             inventory={inventory}
+            mounted={mounted}
             setTotalProfitLoss={setTotalProfitLoss}
           />
         )}

@@ -17,17 +17,21 @@ export default function ProfileContainer({ navigation }) {
   const [invested, setInvested] = useState([]);
   const [totalInvested, setTotalInvested] = useState(null);
   const [totalProfitLoss, setTotalProfitLoss] = useState(0);
+  const [mounted,setMounted] = useState(true)
 
   useEffect(() => {
+    
     const initialize = async () => {
       // Set User Balance and Username -- Top Level Users Collection
       const docRef = onSnapshot(doc(db, "users", user.uid), (person) => {
-        setBalance(person.data().balance);
-        setUsername(person.data().username);
+        if (mounted){
+          setBalance(person.data().balance);
+          setUsername(person.data().username);
+        }
       });
 
       // Set User Inventory -- Inventory Sub Collection
-     
+      
       const q =  query(collection(db, `users/${user.uid}/inventory`))
       const unsub = onSnapshot(q,(querySnapshot) => {
         const inventory = []
@@ -42,14 +46,20 @@ export default function ProfileContainer({ navigation }) {
           invested+=quantity * bought_price;
           inventory.push({id,coinName,bought_price,quantity})
         })
-        setTotalInvested(invested);
-        setInventory(inventory);
+        if (mounted){
+          setTotalInvested(invested);
+          setInventory(inventory);
+        }
+        
       })
 
       
     };
 
     initialize();
+    return () => {
+     setMounted(false)
+    };
   }, [user, balance,inventory]);
 
   return (
@@ -63,6 +73,7 @@ export default function ProfileContainer({ navigation }) {
       totalInvested={totalInvested}
       totalProfitLoss={totalProfitLoss}
       setTotalProfitLoss={setTotalProfitLoss}
+      mounted={mounted}
     />
   );
 }
