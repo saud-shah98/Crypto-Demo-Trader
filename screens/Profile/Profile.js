@@ -1,6 +1,5 @@
 import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-
 import InventoryEntry from "../../components/InventoryEntry";
 import ProfileHeader from "../../components/ProfileHeader";
 import Logout from "../../components/Logout";
