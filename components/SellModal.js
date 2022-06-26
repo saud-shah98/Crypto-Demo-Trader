@@ -61,26 +61,28 @@ const SellModal = ({
             style={{ alignSelf: "'flex-start'" }}
             onPress={() => setModalVisible(false)}
           />
+       
+
+          
           <Text style={{ fontSize: 45, color: "white" }}>{item.coinName}</Text>
-          <Text style={{ fontSize: 34, color: "white" }}>
-            Amount owned: {amountOwned >= 1 ? parseFloat(amountOwned).toFixed(2): parseFloat(amountOwned).toFixed(6)}
+          <Text style={{ fontSize: 20, color: "white" }}>Amount owned: {amountOwned >= 1 ? parseFloat(amountOwned).toFixed(2): parseFloat(amountOwned).toFixed(6)}
           </Text>
-          <Text style={{ fontSize: 34, color: "white" }}>
+          <Text style={{ fontSize: 20, color: "white" }}>
             You bought at: ${item.bought_price}
           </Text>
-          <Text style={{ fontSize: 34, color: "white",marginTop:25 }}>
+          <Text style={{ fontSize: 20, color: "white",}}>
             Current Price: ${current_price_usd}
           </Text>
+
          
 
-          <Text style={{ fontSize: 35, color: "white" }}>
+          <Text style={{ fontSize: 20, color: "white",marginTop:20 }}>
             Sell {quantity} for $
             {parseFloat(quantity * current_price_usd).toFixed(2)}
           </Text>
           <TextInput
             onChangeText={setQuantity}
             placeholder="Enter Quantity"
-            keyboardType="number-pad"
             style={{
               padding: 10,
               fontSize: 32,

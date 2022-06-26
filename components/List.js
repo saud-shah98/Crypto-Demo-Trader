@@ -13,7 +13,7 @@ const List = ({ data, navigation, searchPhrase,balance }) => {
         .toUpperCase()
         .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
     ) {
-      return <Entry item={item} navigation={navigation} />;
+      return <Entry item={item} balance={balance} navigation={navigation} />;
     }
   };
 

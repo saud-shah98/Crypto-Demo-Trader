@@ -11,7 +11,7 @@ import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebase";
 const windowWidth = Dimensions.get("window").width;
 
-const Entry = ({ item, balance }) => {
+const Entry = ({ item, balance,mounted }) => {
   const { user } = useContext(AuthContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [numCoinsOwned, setNumCoinsOwned] = useState();
@@ -23,6 +23,7 @@ const Entry = ({ item, balance }) => {
       const unsub = onSnapshot(
         doc(db, `users/${user.uid}/inventory`, item.name),
         (doc) => {
+          if (!mounted) return;
           !doc.exists()
             ? setNumCoinsOwned(0)
             : setNumCoinsOwned(doc.data().quantity);
