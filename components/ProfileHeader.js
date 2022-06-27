@@ -15,7 +15,7 @@ const ProfileHeader = ({
   return (
     <>
       <View style={{ flexDirection: "row" }}>
-        <View style={styles.rowItemOrange}>
+        <View style={styles.rowItemDark}>
           <Text
             style={{
               color: "white",
@@ -37,7 +37,7 @@ const ProfileHeader = ({
           </Text>
         </View>
 
-        <View style={styles.rowItemDark}>
+        <View style={styles.rowItemOrange}>
           <Text style={{ fontSize: 20, color: "white" }}>Investment</Text>
           <MaterialIcons name="book" size={65} color="white" />
           <Text style={{ color: "white", fontSize: 15 }}>Invested:</Text>
@@ -95,10 +95,10 @@ const styles = StyleSheet.create({
     width: "33.3%",
   },
   rowItemDark: {
-    padding: 15,
-    backgroundColor: AppStyles.theme_1.DARK2,
+    backgroundColor: 'gray',
     alignItems: "center",
     width: "33.3%",
+    padding:15
   },
 });
 
