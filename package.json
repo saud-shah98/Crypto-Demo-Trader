@@ -9,6 +9,9 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "engines": {
+    "node": ">=16.15.0"
+  },
   "dependencies": {
     "@expo/metro-config": "^0.3.18",
     "@react-native-community/datetimepicker": "6.1.2",
