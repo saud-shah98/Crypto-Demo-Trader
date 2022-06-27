@@ -121,8 +121,8 @@ const SellModal = ({
         }}
         style={{ padding: 10 }}
       >
-        <Text style={{ color: AppStyles.theme_1.WHITE }}>Sell</Text>
-        <AntDesign name="shoppingcart" size={35} color="white" />
+        <Text style={{ color: AppStyles.theme_1.DARK2 }}>Sell</Text>
+        <AntDesign name="shoppingcart" size={20} color="darkgreen" />
       </Pressable>
     </>
   );
