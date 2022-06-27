@@ -10,7 +10,7 @@
     "eject": "expo eject"
   },
   "engines": {
-    "node": ">=16.15.0"
+    "node": "16"
   },
   "dependencies": {
     "@expo/metro-config": "^0.3.18",
