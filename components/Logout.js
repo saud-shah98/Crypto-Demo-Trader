@@ -5,17 +5,22 @@ import { AntDesign } from "@expo/vector-icons";
 
 
 export default function Logout({logout}) {
-  return (
-    <View style={{ padding: 10, alignItems: "center"}}>
-        <Text style={{ color: AppStyles.theme_1.WHITE, fontSize: 24 }}>
-          Signout
-        </Text>
+  return (<View style={{alignItems:'center',marginRight:10,}}>
+
+
+
+       
         <AntDesign
           name="lock"
-          size={52}
-          color={AppStyles.theme_1.WHITE}
+          size={40}
+          color={AppStyles.theme_1.DARK}
           onPress={() => logout()}
+          
         />
-      </View>
+         <Text>Logout</Text>
+
+</View>
+
+
   )
 }

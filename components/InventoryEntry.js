@@ -139,7 +139,7 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
         <Text
           style={{
             fontSize: item.coinName.length >= 8 ? 13 : 15,
-            color: AppStyles.theme_1.DARK2,
+            color: AppStyles.theme_1.WHITE,
           }}
         >
           {item.coinName}
@@ -151,7 +151,7 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
         <Text
           style={{
             fontSize: 12,
-            color: AppStyles.theme_1.DARK2,
+            color: AppStyles.theme_1.WHITE,
           }}
         >
           {parseFloat(item.quantity).toFixed(2)}
@@ -223,30 +223,31 @@ const InventoryEntry = ({ item, user, inventory, setTotalProfitLoss }) => {
 
 const styles = StyleSheet.create({
   row: {
-    backgroundColor: AppStyles.theme_1.WHITE,
+    backgroundColor: AppStyles.theme_1.DARK,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    height: 80,
-    marginVertical: 5,
+    height: 65,
+    paddingHorizontal:5,
+    marginVertical: 2,
     borderRadius: 50,
     width: (windowWidth > 450) ? windowWidth/2: '98%',
     alignSelf: "center",
   },
   rowShortText: {
     fontSize: 12,
-    color: AppStyles.theme_1.DARK2
+    color: AppStyles.theme_1.WHITE
     ,
   },
   rowLongText: {
     fontSize: 18,
-    color: AppStyles.theme_1.DARK2,
+    color: AppStyles.theme_1.WHITE,
   },
   columns: {
     marginHorizontal: 1,
   },
   labels: {
-    color: AppStyles.theme_1.DARK2,
+    color: AppStyles.theme_1.WHITE,
     fontSize: 12,
     
   },

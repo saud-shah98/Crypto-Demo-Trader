@@ -143,7 +143,7 @@ const Entry = ({ item, balance,mounted }) => {
 };
 const styles = StyleSheet.create({
   row: {
-    backgroundColor: AppStyles.theme_1.ORANGE,
+    backgroundColor: AppStyles.theme_1.DARK,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
