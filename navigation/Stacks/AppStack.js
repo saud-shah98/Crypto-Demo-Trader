@@ -5,8 +5,13 @@ import DetailContainer from "../../screens/Detail/DetailContainer";
 import ProfileContainer from "../../screens/Profile/ProfileContainer";
 const Stack = createNativeStackNavigator();
 import AppStyles from "../../AppStyles";
+import Logout from "../../components/Logout";
+import { AuthContext } from "../../navigation/AuthProvider";
+
+
 
 const AppStack = () => {
+  const { user,logout } = useContext(AuthContext);
   return (
     <Stack.Navigator
       screenOptions={{
@@ -14,7 +19,7 @@ const AppStack = () => {
           backgroundColor: AppStyles.theme_1.WHITE,
         },
         headerTitleStyle: {
-          color: AppStyles.theme_1.ORANGE,
+          color: AppStyles.theme_1.DARK,
         },
       }}
     >
@@ -23,7 +28,7 @@ const AppStack = () => {
         component={HomeContainer}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Profile" component={ProfileContainer} />
+      <Stack.Screen name="Profile" component={ProfileContainer}  />
       <Stack.Screen name="Detail" component={DetailContainer} />
     </Stack.Navigator>
   );

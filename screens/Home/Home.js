@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     // Controls Background For Search Bar + Remainder of the Page after Search
-    backgroundColor: AppStyles.theme_1.DARK,
+    backgroundColor: AppStyles.theme_1.WHITE,
   },
 });
 export default Home;

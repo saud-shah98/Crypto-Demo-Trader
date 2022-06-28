@@ -50,5 +50,5 @@ export default function Profile({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: AppStyles.theme_1.DARK },
+  container: { flex: 1, backgroundColor: AppStyles.theme_1.WHITE },
 });

@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: "33.3%",
   },
   rowItemDark: {
-    backgroundColor: 'gray',
+    backgroundColor: AppStyles.theme_1.DARK,
     alignItems: "center",
     width: "33.3%",
     padding:15
